@@ -1,27 +1,22 @@
-//Planning User
-
-/*
-class User {
-  constructor () {
-    this.id
-    this.password = overlook2021
-    this.name
-    this.currentDate = hard coded date
+/* 
+class Hotel {
+  constructor() {
+    this.rooms = [array holds all Room instances]
+    this.bookings = [array holds all bookings]
   }
 
-   checkAvailability(date,) {
+  filterRooms("roomType") {
+    method that will take in a roomType parameter
+    (suite, residiential suite, junior suite..etc); 
+    return an array of room objects of that type
+  }
+
+  checkAvailability(date) {
     method that will return a list of rooms based on a chosen date from the customer
     should return an array of rooms
   }
-
-  addBooking() {
-    method that will add a new booking to the bookings array when called
-  }
-
-
 }
 
-/* 
 
 bookings Data: 
 {
@@ -45,6 +40,5 @@ Rooms Data:
     "numBeds": 1,
     "costPerNight": 305.85
   }
-*/
 
 */
