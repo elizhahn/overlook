@@ -18,9 +18,9 @@
         <label for="checkin">check in
         <input type="date" id="checkin" name="book-date"
           value="2021-03-11"
-          min="2020-01-01" max="2021-12-31">
+          min="2020-01-01" max="2021-12-31" id="dateSelector">
         </label>
-        <button class="btn">Search Rooms</button>
+        <button class="btn" id="searchRooms">Search Rooms</button>
       </div>
     </section>
     <section class="dashboard">
@@ -69,7 +69,7 @@
           </label>
         </fieldset>
        <section class="dashboard-rooms-container">
-         <ul class="dashboard-rooms-list">
+         <ul class="dashboard-rooms-list" id="roomList">
            <li class="dashboard-room-item">
             <article class="dashboard-room">
               <img class="room-img" src="./images/alexander-kaunas-67-sOi7mVIk-unsplash.jpg" alt="sunny hotel room featuring a queen bed">
