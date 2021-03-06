@@ -26,6 +26,10 @@ class User {
     this.bookings = userBookings;
   }
 
+  calcNumberStays() {
+    return this.bookings.length; 
+  }
+
   calcTotalSpent(roomData) {
     const customerSpending = this.bookings.reduce((totalSpent, booking) => {
       const bookedRoom = roomData.find(hotelRoom => {
