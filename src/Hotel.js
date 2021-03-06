@@ -1,23 +1,24 @@
-/* 
+
 class Hotel {
-  constructor() {
-    this.rooms = [array holds all Room instances]
-    this.bookings = [array holds all bookings]
+  constructor(date) {
+    this.date = date; 
+    this.rooms = [];
+    this.bookings = [];
   }
 
-  filterRooms("roomType") {
-    method that will take in a roomType parameter
-    (suite, residiential suite, junior suite..etc); 
-    return an array of room objects of that type
+  filterRooms(roomType) {
+    // method that will take in a roomType parameter
+    // (suite, residiential suite, junior suite..etc); 
+    // return an array of room objects of that type
   }
 
   checkAvailability(date) {
-    method that will return a list of rooms based on a chosen date from the customer
-    should return an array of rooms
+    // method that will return a list of rooms based on a chosen date from the customer
+    // should return an array of rooms
   }
 }
 
-
+/*
 bookings Data: 
 {
     "id": "5fwrgu4i7k55hl6t5", unique id for booking
