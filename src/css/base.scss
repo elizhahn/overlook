@@ -123,10 +123,14 @@ main {
 
 .dashboard-room {
   display: flex;
+  align-items: flex-start; 
   flex: 1; 
+  
 }
 
 .room-img { 
+   padding: 20px 0px; 
+   height: 160px; 
    width: 30%;
 }
 
