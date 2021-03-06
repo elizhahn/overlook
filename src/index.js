@@ -14,6 +14,7 @@ import User from './User';
 const totalStays = document.getElementById('numberStays');
 const totalSpent = document.getElementById('totalSpent');
 const userHistory = document.getElementById('userHistory');
+const userName = document.getElementById('userName'); 
 let currentUser;
 let hotel;  
 
@@ -29,6 +30,10 @@ Promise.all(apiData)
   function createUser(userData, bookingData) {
    currentUser = new User(userData);
    currentUser.updateBookingHistory(bookingData);
+  }
+
+  function displayUserName() {
+    userName.innerText = currentUser.name; 
   }
 
   function displayUserTotals(roomData) {
@@ -55,5 +60,6 @@ Promise.all(apiData)
      
     createUser(userData, bookingData); 
     displayUserTotals(roomData); 
-    displayUserHistory();  
+    displayUserHistory();
+    displayUserName();   
   }
