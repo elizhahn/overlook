@@ -20,7 +20,7 @@
           value="2021-03-11"
           min="2020-01-01" max="2021-12-31">
         </label>
-        <button class="search-btn">Search Rooms</button>
+        <button class="btn">Search Rooms</button>
       </div>
     </section>
     <section class="dashboard">
@@ -53,18 +53,54 @@
       </aside>
       <section class="dashboard-rooms">
         <h2>Available Rooms</h2>
-        <label for="suite">Suite
-        <input type="radio" id="suite" name="room-type" value="suite">
-       </label>
-       <label for="juniorSuite">Junior Suite
-       <input type="radio" id="juniorSuite" name="room-type" value="juniorSuite">
-       </label>
-       <label for="residentialSuite">Residential Suite
-       <input type="radio" id="residentialSuite" name="room-type" value="residentialSuite">
-       </label>
-       <label for="single">Single
-       <input type="radio" id="single" name="room-type" value="single">
-       </label>
+        <div class="dashboard-room-filters">
+          <label class="item-title" for="suite">Suite
+          <input type="radio" id="suite" name="room-type" value="suite">
+          </label>
+          <label class="item-title" for="juniorSuite">Junior Suite
+          <input type="radio" id="juniorSuite" name="room-type" value="juniorSuite">
+          </label>
+          <label class="item-title" for="residentialSuite">Residential Suite
+          <input type="radio" id="residentialSuite" name="room-type" value="residentialSuite">
+          </label>
+          <label class="item-title" for="single">Single
+          <input type="radio" id="single" name="room-type" value="single">
+          </label>
+       </div>
+       <section class="dashboard-rooms-container">
+         <ul class="dashboard-rooms-list">
+           <li class="dashboard-room-item">
+            <article class="dashboard-room">
+              <img class="room-img" src="./images/alexander-kaunas-67-sOi7mVIk-unsplash.jpg">
+              <div class="room-info">
+                <p class="room-description">room: single room</p>
+                <p class="room-description">bidet</p>
+                <p class="room-description">bedsize: King</p>
+                <p class="room-description">number of beds: 1</p>
+                <p class="room-description">nightly rate: $236.65</p>
+              </div>
+            </article>
+            <div>
+              <button class="btn">Book Now</button>
+            </div>
+           </li>
+           <li class="dashboard-room-item">
+            <article class="dashboard-room">
+              <img class="room-img" src="./images/alexander-kaunas-67-sOi7mVIk-unsplash.jpg">
+              <div class="room-info">
+                <p class="room-description">room: single room</p>
+                <p class="room-description">bidet</p>
+                <p class="room-description">bedsize: King</p>
+                <p class="rrom-description">number of beds: 1</p>
+                <p class="room-description">nightly rate: $236.65</p>
+              </div>
+            </article>
+            <div>
+              <button class="btn">Book Now</button>
+            </div>
+           </li>
+          </ul>
+       </section>
       </section>
     </section>
   </main>
