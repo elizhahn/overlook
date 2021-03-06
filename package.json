@@ -31,6 +31,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "js-datepicker": "^5.18.0",
     "normalize": "^0.3.1"
   }
 }
