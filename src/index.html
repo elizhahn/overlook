@@ -1,13 +1,109 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A hotel booking application for the overlook hotel." />
+    <title>overlook</title>
   </head>
+  <header class="title" role="banner">
+    <h1>The Overlook</h1>
+  </header>
+  <div class="purple-accent"></div>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+    <main>
+    <section class="search" role ="search">
+      <h1 class="search-welcome-msg">Welcome, Elizabeth Hahn</h1>
+      <div class="search-container">
+        <label for="checkin">check in
+        <input type="date" id="checkin" name="book-date"
+          value="2021-03-11"
+          min="2020-01-01" max="2021-12-31">
+        </label>
+        <button class="btn">Search Rooms</button>
+      </div>
+    </section>
+    <section class="dashboard">
+      <aside class="dashboard-history">
+        <h2>Your History</h2>
+        <ul class="dashboard-summary">
+          <li class="dashboard-summary-item">
+            <p class="item-title">Number of stays</p>
+            <p>3</p>
+          </li>
+          <li class="dashboard-summary-item">
+            <p class="item-title">Total Spent</p>
+            <p>$326.78</p>
+          </li>
+        </ul>
+        <div class="dashboard-stays-title">
+          <p class="item-title">Stays</p>
+          <p class="item-title">Room</p>
+        </div>
+        <ul class="dashboard-stays">
+          <li class="dashboard-stays-item">
+              <p>3/11/2021</p>
+              <p>suite</p>
+          </li>
+          <li class="dashboard-stays-item">
+            <p>3/11/2021</p>
+            <p>suite</p>
+          </li>
+        </ul>
+      </aside>
+      <section class="dashboard-rooms">
+        <h2>Available Rooms</h2>
+        <fieldset class="dashboard-room-filters">
+          <legend>Choose a room type</legend>
+          <label class="item-title" for="suite">Suite
+          <input type="radio" id="suite" name="room-type" value="suite">
+          </label>
+          <label class="item-title" for="juniorSuite">Junior Suite
+          <input type="radio" id="juniorSuite" name="room-type" value="juniorSuite">
+          </label>
+          <label class="item-title" for="residentialSuite">Residential Suite
+          <input type="radio" id="residentialSuite" name="room-type" value="residentialSuite">
+          </label>
+          <label class="item-title" for="single">Single
+          <input type="radio" id="single" name="room-type" value="single">
+          </label>
+        </fieldset>
+       <section class="dashboard-rooms-container">
+         <ul class="dashboard-rooms-list">
+           <li class="dashboard-room-item">
+            <article class="dashboard-room">
+              <img class="room-img" src="./images/alexander-kaunas-67-sOi7mVIk-unsplash.jpg" alt="sunny hotel room featuring a queen bed">
+              <div class="room-info">
+                <p class="room-description">room: single room</p>
+                <p class="room-description">bidet</p>
+                <p class="room-description">bedsize: King</p>
+                <p class="room-description">number of beds: 1</p>
+                <p class="room-description">nightly rate: $236.65</p>
+              </div>
+            </article>
+            <div>
+              <button class="btn">Book Now</button>
+            </div>
+           </li>
+           <li class="dashboard-room-item">
+            <article class="dashboard-room">
+              <img class="room-img" src="./images/alexander-kaunas-67-sOi7mVIk-unsplash.jpg" alt="sunny hotel room featuring a queen bed">
+              <div class="room-info">
+                <p class="room-description">room: single room</p>
+                <p class="room-description">bidet</p>
+                <p class="room-description">bedsize: King</p>
+                <p class="room-description">number of beds: 1</p>
+                <p class="room-description">nightly rate: $236.65</p>
+              </div>
+            </article>
+            <div>
+              <button class="btn">Book Now</button>
+            </div>
+           </li>
+          </ul>
+       </section>
+      </section>
+    </section>
+  </main>
   </body>
 </html>

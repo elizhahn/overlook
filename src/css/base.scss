@@ -1,7 +1,155 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+@import 'variables';
+@import 'normalize';
+@import 'text-elements';
+@import '~js-datepicker/src/datepicker';
+
+// *,
+// *:after,
+// *:before {
+// box-sizing: border-box;
+// margin: 0;
+// padding: 0;
+// }
+
+html {
+  height: 100%;   
+}
 
 body {
-  background: $primary-background;
+  font-family: $primary-text; 
 }
+main {
+  margin: 20px; 
+}
+
+.title {
+  color: #FFF;
+  background-color: #673AB7;
+  padding: 15px; 
+}
+
+.purple-accent {
+  background-color: #512DA8;
+  height: 30px; 
+}
+
+.search {
+  display: flex;
+  padding: 30px;   
+}
+
+.search-welcome-msg {
+  font-style: italic;
+  font-weight: 400; 
+  width: 50%; 
+}
+
+.search-container {
+  display:flex; 
+  align-items: center;
+  justify-content: space-around; 
+  width: 50%; 
+}
+
+.btn {
+  background-color: #D1C4E9;
+  border: none; 
+  padding: 10px;
+  border-radius: 5px; 
+}
+
+// ----------------History box-----------------------
+
+.dashboard {
+  display: flex;
+}
+
+.dashboard-history {
+  box-shadow: $card;
+  margin: 10px;
+  padding: 20px; 
+  width: 40%;   
+}
+
+.dashboard-rooms {
+  @extend.dashboard-history; 
+  width: 90%; 
+}
+
+.dashboard-summary {
+  padding: 0px;
+  border-bottom: thin solid #D1C4E9;
+}
+
+.dashboard-stays {
+  @extend.dashboard-summary; 
+}
+
+.dashboard-stays-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-summary-item {
+  @extend.dashboard-stays-title;
+}
+
+.dashboard-stays-item {
+  padding: 5px 0px; 
+  border-top: thin solid #D1C4E9;
+  @extend.dashboard-stays-title;
+}
+
+// ---------------Rooms Box--------------------
+
+.dashboard-room-filters {
+  display: flex; 
+  justify-content: space-around;
+  padding: 20px 0px;  
+  border-bottom: thin solid #D1C4E9;
+}
+
+legend {
+  color:  #512DA8;
+  font-weight: 600;
+}
+
+.dashboard-rooms-list {
+  list-style-type: none;
+  padding: 0px; 
+  margin: 0px;  
+}
+
+.dashboard-room-item {
+ display: flex; 
+ border-bottom: thin solid #D1C4E9;
+ padding: 20px;
+}
+
+.dashboard-room {
+  display: flex;
+  align-items: flex-start; 
+  flex: 1; 
+  
+}
+
+.room-img { 
+   padding: 20px 0px; 
+   height: 160px; 
+   width: 30%;
+}
+
+.room-info {
+  margin-left: 10px; 
+}
+
+
+
+
+
+
+
+
+
+
+
