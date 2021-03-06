@@ -1,5 +1,4 @@
 import chai from 'chai';
-import Hotel from '../src/Hotel.js';
 const expect = chai.expect;
 import User from '../src/User.js'
 import bookingData from '../test-data/Booking-test-data.js';
@@ -85,5 +84,16 @@ describe('User', function() {
     user1.updateBookingHistory(bookingData); 
     const totalSpent = user1.calcTotalSpent(roomData);
     expect(totalSpent).to.equal(906.82); 
+  });
+  it('should add a new booking to the user\'s bookings', function () {
+    user1.updateBookingHistory(bookingData); 
+    const newBooking = user1.createNewBooking(4, '2020/02/06');
+    expect(newBooking).to.deep.equal(
+      {
+        userID: 1,
+        date: '2020/02/06',
+        roomNumber: 4,
+        roomServiceCharges: []
+      });
   });
 });

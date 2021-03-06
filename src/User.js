@@ -37,37 +37,18 @@ class User {
     return Number(customerSpending.toFixed(2)); 
   }
    
-  // addBooking() {
-  //   method that will add a new booking to the bookings array when called
-  // }
-
-
+  createNewBooking(roomNumber, date) {
+      const newBooking = 
+      {
+        userID: this.id,
+        date: date,
+        roomNumber: roomNumber,
+        roomServiceCharges: []
+      };
+      return newBooking; 
+  }
 }
 
 
-
-/*bookings Data: 
-{
-    "id": "5fwrgu4i7k55hl6t5", unique id for booking
-    "userID": 43, who booked
-    "date": "2020/01/24",
-    "roomNumber": 24,
-    "roomServiceCharges": []
-  }
-customer Data: 
-  {
-    "id": 1,
-    "name": "Leatha Ullrich"
-  }
-Rooms Data: 
-  {
-    "number": 25,
-    "roomType": "single room",
-    "bidet": true,
-    "bedSize": "queen",
-    "numBeds": 1,
-    "costPerNight": 305.85
-  }
-*/
 
 export default User; 
