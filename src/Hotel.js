@@ -1,9 +1,9 @@
 
 class Hotel {
-  constructor(date) {
+  constructor(date, roomData, bookingData) {
     this.date = date; 
-    this.rooms = [];
-    this.bookings = [];
+    this.rooms = roomData;
+    this.bookings = bookingData;
   }
 
   filterRooms(roomType) {
