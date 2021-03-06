@@ -42,40 +42,58 @@ describe('User', function() {
     expect(user1.bookings).to.deep.equal([{
       "id": "5fwrgu4i7k55hl6sz",
       "userID": 1,
-      "date": "2020/04/22",
-      "roomNumber": 1,
+      "date": "2020/02/05",
+      "roomNumber": 2,
       "roomServiceCharges": []
     },
     {
       "id": "5fwrgu4i7k55hl6t5",
       "userID": 1,
-      "date": "2020/01/24",
+      "date": "2020/02/05",
       "roomNumber": 4,
       "roomServiceCharges": []
     }]);  
   });
   it('should update booking history from newest to oldest bookings', function () {
     user2.updateBookingHistory(bookingData); 
-    expect(user2.bookings.length).to.equal(2); 
+    expect(user2.bookings.length).to.equal(3); 
     expect(user2.bookings).to.deep.equal([
+    {
+      "id": "5fwrgu4i7k55hl6t6",
+      "userID": 2,
+      "date": "2020/02/05",
+      "roomNumber": 5,
+      "roomServiceCharges": []
+    },
     {
       "id": "5fwrgu4i7k55hl6t7",
       "userID": 2,
-      "date": "2020/02/16",
+      "date": "2020/02/05",
       "roomNumber": 6,
       "roomServiceCharges": []
     },
     {
-      "id": "5fwrgu4i7k55hl6t6",
+      "id": "5fwrgu4i7k55hl6u4",
       "userID": 2,
-      "date": "2020/01/10",
-      "roomNumber": 5,
+      "date": "2020/01/23",
+      "roomNumber": 1,
       "roomServiceCharges": []
     }]);
   })
   it('should calculate user\'s total amount spent',function () {
     user1.updateBookingHistory(bookingData); 
     const totalSpent = user1.calcTotalSpent(roomData);
-    expect(totalSpent).to.equal(787.84); 
-  })
+    expect(totalSpent).to.equal(906.82); 
+  });
+  it('should add a new booking to the user\'s bookings', function () {
+    user1.updateBookingHistory(bookingData); 
+    const newBooking = user1.createNewBooking(4, '2020/02/06');
+    expect(newBooking).to.deep.equal(
+      {
+        userID: 1,
+        date: '2020/02/06',
+        roomNumber: 4,
+        roomServiceCharges: []
+      });
+  });
 });
