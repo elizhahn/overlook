@@ -79,6 +79,11 @@ describe('User', function() {
       "roomNumber": 1,
       "roomServiceCharges": []
     }]);
+  });
+  it('should calculate a user\'s total stays', function () {
+    user1.updateBookingHistory(bookingData); 
+    const totalStays = user1.calcNumberStays()
+    expect(totalStays).to.equal(2);
   })
   it('should calculate user\'s total amount spent',function () {
     user1.updateBookingHistory(bookingData); 

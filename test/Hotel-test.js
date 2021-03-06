@@ -102,10 +102,21 @@ describe('Hotel', function () {
       "numBeds": 2,
       "costPerNight": 477.38
     }]);
+  });
   it('should return an empty array if no rooms of that type are available', function () {
     hotel.checkAvailability("2020/01/23");
     hotel.filterRooms('residential suite');
     expect(hotel.availableRooms).to.deep.equal([]);
   });
-  });
+  it('should return room information', function () {
+    const roomInfo= hotel.returnRoomInfo(1); 
+    expect(roomInfo).to.deep.equal({
+      "number": 1,
+      "roomType": "residential suite",
+      "bidet": true,
+      "bedSize": "queen",
+      "numBeds": 1,
+      "costPerNight": 358.4
+    })
+  })
 });

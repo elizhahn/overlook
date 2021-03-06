@@ -1,6 +1,3 @@
-//Planning User
-
-
 class User {
   constructor (userData) {
     this.id = userData.id;
@@ -24,6 +21,10 @@ class User {
     }
     });
     this.bookings = userBookings;
+  }
+
+  calcNumberStays() {
+    return this.bookings.length; 
   }
 
   calcTotalSpent(roomData) {
