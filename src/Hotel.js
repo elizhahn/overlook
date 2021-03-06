@@ -4,19 +4,32 @@ class Hotel {
     this.date = date; 
     this.rooms = roomData;
     this.bookings = bookingData;
+    this.availableRooms = []; 
   }
 
   filterRooms(roomType) {
-    // method that will take in a roomType parameter
-    // (suite, residiential suite, junior suite..etc); 
-    // return an array of room objects of that type
+    const availableRoomTypes = this.availableRooms.filter(room => {
+      return roomType === room.roomType; 
+    });
+    this.availableRooms = availableRoomTypes; 
   }
 
   checkAvailability(date) {
-    // method that will return a list of rooms based on a chosen date from the customer
-    // should return an array of rooms
+    const bookedRooms = this.bookings.filter(booking => {
+      return date === booking.date
+    });
+    const roomNumbers = bookedRooms.map(booking => {
+      return booking.roomNumber; 
+    });
+    const availableRooms = this.rooms.filter(room => {
+      return !roomNumbers.includes(room.number)
+      });
+      return this.availableRooms = availableRooms; 
   }
+  
 }
+
+export default Hotel; 
 
 /*
 bookings Data: 
