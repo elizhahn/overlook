@@ -1,16 +1,8 @@
-
-
 import './css/base.scss';
 import './images/alexander-kaunas-67-sOi7mVIk-unsplash.jpg'
 import './images/favpng_tidelands-caribbean-hotel-hotel-monte-carlo-suites-resort.png'
 import './images/paul-postema-vn30_b1ik6s-unsplash.jpg'
 import './images/venice-hotel-tqwvsyL2Kd0-unsplash.jpg' 
-
-
-
-
-
-
 import User from './User';
 import Hotel from './Hotel';
 

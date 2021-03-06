@@ -26,6 +26,13 @@ class Hotel {
       });
       return this.availableRooms = availableRooms; 
   }
+
+  returnRoomInfo(roomNumber) {
+    const room = this.rooms.find(room => {
+      return roomNumber === room.number; 
+    });
+    return room; 
+  }
   
 }
 
