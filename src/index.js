@@ -25,12 +25,21 @@ const availableRoomsList = document.getElementById('roomList')
 const calendar = document.querySelector('.date-selector')
 const roomTypeSection = document.getElementById('roomTypes');
 const roomList = document.getElementById('roomList'); 
+const apology = document.getElementById('dashboardMsg');
 let currentUser;
 let hotel; 
 
 btnSearchRooms.addEventListener('click', filterRoomsByDate);
 roomTypeSection.addEventListener('click', filterRoomsByType);
 roomList.addEventListener('click', findBookingInfo);
+
+  function hide(element) {
+    element.classList.add('hidden'); 
+  }
+
+  function show(element) {
+    element.classList.remove('hidden'); 
+  }
 
   function createUser(userData, bookingData) {
    currentUser = new User(userData);
@@ -86,9 +95,8 @@ roomList.addEventListener('click', findBookingInfo);
     });
   }
 
-  function displayFilteredRooms(roomType) {
+  function displayFilteredRooms(filteredRooms) {
     availableRoomsList.innerHTML = '';
-    const filteredRooms = hotel.filterRooms(roomType);
     filteredRooms.forEach(room => {
     const roomPicture = findPicture(room); 
     availableRoomsList.innerHTML += ` <li class="dashboard-room-item">
@@ -108,13 +116,19 @@ roomList.addEventListener('click', findBookingInfo);
     </div>
    </li>`
     });
-
   }
 
   function filterRoomsByDate() {
     const date = calendar.value.replaceAll("-", "/")
-    hotel.checkAvailability(date);
-    displayAvailableRooms(); 
+    hotel.checkAvailability(date)
+    if(hotel.availableRooms.length) { 
+      hide(apology); 
+      displayAvailableRooms(); 
+  } else {
+      displayAvailableRooms()
+      show(apology);
+  }
+    
   }
 
   function filterRoomsByType(event) {
@@ -128,7 +142,18 @@ roomList.addEventListener('click', findBookingInfo);
   }  else {
       filter = 'single room'
     }
-    displayFilteredRooms(filter);   
+    checkFilteredRooms(filter);  
+  }
+
+  function checkFilteredRooms(roomType)  {
+    const filteredRooms = hotel.filterRooms(roomType);
+    if(filteredRooms.length) {
+      hide(apology); 
+      displayFilteredRooms(filteredRooms);
+  } else {
+      displayFilteredRooms(filteredRooms); 
+      show(apology); 
+  }
   }
 
   function findBookingInfo(event) { 
