@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'normalize';
 @import 'text-elements';
-@import '~js-datepicker/src/datepicker';
+@import 'mixins';
 
 // *,
 // *:after,
@@ -24,12 +24,12 @@ main {
 
 .title {
   color: #FFF;
-  background-color: #673AB7;
+  background-color: $purple;
   padding: 15px; 
 }
 
 .purple-accent {
-  background-color: #512DA8;
+  background-color: $dark-purple;
   height: 30px; 
 }
 
@@ -52,7 +52,7 @@ main {
 }
 
 .btn {
-  background-color: #D1C4E9;
+  background-color: $light-purple;
   border: none; 
   padding: 10px;
   border-radius: 5px; 
@@ -78,7 +78,7 @@ main {
 
 .dashboard-summary {
   padding: 0px;
-  border-bottom: thin solid #D1C4E9;
+  @include setBorder(border-bottom);
 }
 
 .dashboard-stays {
@@ -96,7 +96,7 @@ main {
 
 .dashboard-stays-item {
   padding: 5px 0px; 
-  border-top: thin solid #D1C4E9;
+  @include setBorder(border-top);
   @extend.dashboard-stays-title;
 }
 
@@ -105,12 +105,12 @@ main {
 .dashboard-room-filters {
   display: flex; 
   justify-content: space-around;
-  padding: 20px 0px;  
-  border-bottom: thin solid #D1C4E9;
+  padding: 20px 0px; 
+  @include setBorder(border-bottom); 
 }
 
 legend {
-  color:  #512DA8;
+  color: $purple;
   font-weight: 600;
 }
 
@@ -122,7 +122,7 @@ legend {
 
 .dashboard-room-item {
  display: flex; 
- border-bottom: thin solid #D1C4E9;
+ @include setBorder(border-bottom);
  padding: 20px;
 }
 
@@ -141,6 +141,12 @@ legend {
 
 .room-info {
   margin-left: 10px; 
+}
+
+// -------------------state-----------------------------
+
+.hidden {
+  display: none; 
 }
 
 
