@@ -123,24 +123,111 @@ legend {
 .dashboard-room-item {
  display: flex; 
  @include setBorder(border-bottom);
- padding: 20px;
+ padding-top: 20px;
 }
 
 .dashboard-room {
   display: flex;
   align-items: flex-start; 
-  flex: 1; 
-  
+  flex: 1;
+  margin-right: 10px;  
 }
 
 .room-img { 
    padding: 20px 0px; 
    height: 160px; 
-   width: 30%;
+   max-width: 215px; 
 }
 
 .room-info {
   margin-left: 10px; 
+}
+
+.book-container {
+  width: 25%; 
+}
+
+
+
+// ------------------tablet view-----------------------
+@media screen and (max-width: 980px) {
+  main {
+    margin: 0px; 
+  }
+
+  .search {
+    flex-direction: column;
+    align-items: center;  
+  }
+
+  .search-container {
+    flex-direction: column; 
+    justify-content: space-around; 
+  }
+
+  .search-welcome-msg {
+    text-align: center; 
+  }
+
+  .search-btn {
+    margin-top: 20px; 
+  }
+
+  .dashboard {
+    flex-direction: column;
+    align-items: center;   
+  }
+
+  .dashboard-history {
+    max-height: 600px; 
+    overflow: scroll; 
+    width: 75%;
+  }
+  .dashboard-msg {
+    margin: 30px 60px;
+    line-height: 20px;  
+  }
+}
+
+@media screen and (max-width: 700px) {
+
+  .search-welcome-msg {
+    font-size: 1.5em; 
+  }
+
+  .dashboard-room-filters{
+    flex-direction: column; 
+  }
+
+  .item-title {
+    margin-top: 10px; 
+  }
+
+  .dashboard-room {
+    flex-direction: column; 
+  }
+
+  .dashboard-room-item {
+    flex-direction: column; 
+    padding: 0px;
+  }
+
+  .room-img {
+    padding-bottom: 5px; 
+  }
+
+  .room-info {
+    margin: 0px 0px 5px 0px; 
+  }
+
+  .dashboard-msg {
+    margin: 20px 20px; 
+  }
+
+  .book-container {
+    width: 100%; 
+  }
+
 }
 
 // -------------------state-----------------------------

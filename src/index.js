@@ -57,7 +57,7 @@ mainPage.addEventListener('click', updateAria);
   }
 
   function displayUserInfo(roomData) {
-    userName.innerText = currentUser.name; 
+    userName.innerText = `Welcome, ${currentUser.name}`; 
     totalStays.innerText = currentUser.calcNumberStays();
     totalSpent.innerText = `$${currentUser.calcTotalSpent(roomData)}`
     currentUser.bookings.forEach(booking => {
@@ -97,7 +97,7 @@ mainPage.addEventListener('click', updateAria);
         <p class="room-description">nightly rate: $${room.costPerNight}</p>
       </div>
     </article>
-    <div id="room${room.number}">
+    <div class="book-container" id="room${room.number}">
       <button class="btn book-btn">Book Now</button>
       <p class="bookingMsg"></p>
     </div>
