@@ -136,11 +136,77 @@ legend {
 .room-img { 
    padding: 20px 0px; 
    height: 160px; 
-   width: 30%;
+   max-width: 215px; 
 }
 
 .room-info {
   margin-left: 10px; 
+}
+
+
+
+// ------------------tablet view-----------------------
+@media screen and (max-width: 980px) {
+  main {
+    margin: 0px; 
+  }
+
+  .search {
+    flex-direction: column;
+    align-items: center;  
+  }
+
+  .search-container {
+    flex-direction: column; 
+    justify-content: space-around; 
+  }
+
+  .search-welcome-msg {
+    text-align: center; 
+  }
+
+  .search-btn {
+    margin-top: 20px; 
+  }
+
+  .dashboard {
+    flex-direction: column;
+    align-items: center;   
+  }
+
+  .dashboard-history {
+    max-height: 600px; 
+    overflow: scroll; 
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .dashboard-room-filters{
+    flex-direction: column; 
+  }
+
+  .item-title {
+    margin-top: 10px; 
+  }
+
+  .dashboard-room {
+    flex-direction: column; 
+  }
+
+  .dashboard-room-item {
+    flex-direction: column; 
+    padding: 0px;
+  }
+
+  .room-img {
+    padding-bottom: 5px; 
+  }
+
+  .room-info {
+    margin: 0px 0px 5px 0px; 
+  }
+
 }
 
 // -------------------state-----------------------------
