@@ -15,17 +15,18 @@ Promise.all(apiData)
     initialize(userData, roomData.rooms, bookingData.bookings);
   });
 
-const calendar = document.getElementById('dateSelector'); 
+ 
 const totalStays = document.getElementById('numberStays');
 const totalSpent = document.getElementById('totalSpent');
 const userHistory = document.getElementById('userHistory');
 const userName = document.getElementById('userName'); 
 const btnSearchRooms = document.getElementById('searchRooms');
 const availableRoomsList = document.getElementById('roomList')
+const calendar = document.querySelector('.date-selector')
 let currentUser;
-let hotel;  
+let hotel; 
 
-btnSearchRooms.addEventListener('click', displayAvailableRooms); 
+btnSearchRooms.addEventListener('click', filterRoomsByDate);
 
 
   function createUser(userData, bookingData) {
@@ -39,7 +40,7 @@ btnSearchRooms.addEventListener('click', displayAvailableRooms);
 
   function displayUserTotals(roomData) {
       totalStays.innerText = currentUser.calcNumberStays();
-      totalSpent.innerText = currentUser.calcTotalSpent(roomData)
+      totalSpent.innerText = `$${currentUser.calcTotalSpent(roomData)}`
   }
 
   function displayUserHistory() {
@@ -69,7 +70,6 @@ btnSearchRooms.addEventListener('click', displayAvailableRooms);
     hotel.checkAvailability(date);
     hotel.availableRooms.forEach(room => {
     const roomPicture = findPicture(room); 
-    console.log(roomPicture); 
     availableRoomsList.innerHTML += ` <li class="dashboard-room-item">
     <article class="dashboard-room">
       ${roomPicture}
@@ -85,19 +85,26 @@ btnSearchRooms.addEventListener('click', displayAvailableRooms);
       <button class="btn">Book Now</button>
     </div>
    </li>`
-    })
+    });
+  }
+
+  function filterRoomsByDate() {
+    availableRoomsList.innerHTML = '';
+    const date = calendar.value.replaceAll("-", "/")
+    console.log(date);
+    displayAvailableRooms(date); 
   }
 
 
 // ------------------Where all the magic happens-------------------
   function initialize(userData, roomData, bookingData) {
-
-    const date = '3/11/2021'
+   
+    const date = '2020/04/22'
     hotel = new Hotel(date, roomData, bookingData); 
-
-    createUser(userData, bookingData); 
-    displayAvailableRooms(hotel.date); 
+    console.log(hotel)
+    createUser(userData, bookingData);  
     displayUserTotals(roomData); 
     displayUserHistory();
-    displayUserName();   
+    displayUserName(); 
+    displayAvailableRooms(date);    
   } 
