@@ -26,12 +26,14 @@ const calendar = document.querySelector('.date-selector')
 const roomTypeSection = document.getElementById('roomTypes');
 const roomList = document.getElementById('roomList'); 
 const apology = document.getElementById('dashboardMsg');
+const mainPage = document.getElementById('mainPage');
 let currentUser;
 let hotel; 
 
 btnSearchRooms.addEventListener('click', filterRoomsByDate);
 roomTypeSection.addEventListener('click', filterRoomsByType);
 roomList.addEventListener('click', findBookingInfo);
+mainPage.addEventListener('click', updateAria);
 
   function hide(element) {
     element.classList.add('hidden'); 
@@ -39,6 +41,14 @@ roomList.addEventListener('click', findBookingInfo);
 
   function show(element) {
     element.classList.remove('hidden'); 
+  }
+
+  function updateAria(event) {
+    if(event.target.id === 'checkin') {
+      calendar.setAttribute('aria-expanded', 'true')
+  } else {
+      calendar.setAttribute('aria-expanded', 'false'); 
+  } 
   }
 
   function createUser(userData, bookingData) {
