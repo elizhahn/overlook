@@ -17,10 +17,77 @@ html {
 
 body {
   font-family: $primary-text; 
+  height: 100%; 
 }
 main {
   margin: 20px; 
 }
+
+// ---------------login page-------------------------
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+  background-color: $purple;
+}
+
+.login-box {
+  background-color: #FFF;
+  box-shadow: $card; 
+  width: 35%;
+  // height: 60%;
+  border-radius: 5px;
+  padding: 20px; 
+}
+
+.welcome-title {
+  color: $purple; 
+  font-size: 1.5em;
+  font-weight: 400;
+  text-align: center;
+  padding: 20px;
+  @include setBorder(border-bottom);
+}
+
+.login-title {
+  font-weight: 400; 
+}
+
+.login-form {
+  display: flex; 
+  flex-direction: column; 
+  align-content: space-evenly; 
+
+}
+
+.login-error-msg {
+  padding-top: 5px;
+  margin: 0px 29px;
+  font-size: .8em;
+}
+
+.input-box {
+  height: 30px;
+  margin: 30px 0px; 
+
+  input:invalid {
+    background-color: $light-purple;
+  }
+}
+
+.login-btn {
+  width: 50%; 
+  align-self: center; 
+  margin-bottom: 30px;
+
+  &:hover {
+    background-color: $purple; 
+  }
+}
+
+// -------------header and search area---------------
 
 .title {
   color: #FFF;
