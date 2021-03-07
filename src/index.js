@@ -23,13 +23,14 @@ const userName = document.getElementById('userName');
 const btnSearchRooms = document.getElementById('searchRooms');
 const availableRoomsList = document.getElementById('roomList')
 const calendar = document.querySelector('.date-selector')
-const btnRoomTypes = document.querySelectorAll('.room-type');
 const roomTypeSection = document.getElementById('roomTypes');
+const roomList = document.getElementById('roomList'); 
 let currentUser;
 let hotel; 
 
 btnSearchRooms.addEventListener('click', filterRoomsByDate);
 roomTypeSection.addEventListener('click', filterRoomsByType);
+roomList.addEventListener('click', findBookingInfo);
 
   function createUser(userData, bookingData) {
    currentUser = new User(userData);
@@ -77,8 +78,9 @@ roomTypeSection.addEventListener('click', filterRoomsByType);
         <p class="room-description">nightly rate: $${room.costPerNight}</p>
       </div>
     </article>
-    <div>
-      <button class="btn">Book Now</button>
+    <div id="room${room.number}">
+      <button class="btn book-btn">Book Now</button>
+      <p class="bookingMsg"></p>
     </div>
    </li>`
     });
@@ -100,8 +102,9 @@ roomTypeSection.addEventListener('click', filterRoomsByType);
         <p class="room-description">nightly rate: $${room.costPerNight}</p>
       </div>
     </article>
-    <div>
-      <button class="btn">Book Now</button>
+    <div id="room${room.number}">
+      <button class="btn book-btn">Book Now</button>
+      <p class="bookingMsg"></p>
     </div>
    </li>`
     });
@@ -127,6 +130,56 @@ roomTypeSection.addEventListener('click', filterRoomsByType);
     }
     displayFilteredRooms(filter);   
   }
+
+  function findBookingInfo(event) { 
+    let roomNumber; 
+    if(event.target.classList.contains('book-btn')) {
+       roomNumber = Number(event.target.parentNode.id.replace("room", ''))
+    }
+     const room = hotel.returnRoomInfo(roomNumber);
+     bookRoom(room); 
+  }
+
+  function bookRoom(roomInfo) { 
+    fetch(`http://localhost:3001/api/v1/bookings`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({'userID': currentUser.id, 'date': calendar.value.replaceAll('-', '/'), 'roomNumber': roomInfo})
+    })
+      .then(response => checkForError(response, roomInfo))
+      .catch(err => displayErrorMessage(roomInfo))
+  }
+
+  function checkForError (response, roomInfo) {
+    if (!response.ok) { 
+      displayErrorMessage(roomInfo);
+    } else {
+      displaySuccessMsg(roomInfo)
+      return response.json(); 
+    }
+  }
+
+  function displayErrorMessage(roomInfo) {
+    const msgBooking = document.querySelectorAll('.bookingMsg')
+    msgBooking.forEach(msg => {
+      if(msg.parentNode.id === `room${roomInfo.number}`) {
+        msg.innerText = 'Something went wrong please refresh and try again'
+      }
+    });
+  }
+  
+
+  function displaySuccessMsg (roomInfo) {
+    const msgBooking = document.querySelectorAll('.bookingMsg')
+    msgBooking.forEach(msg => {
+      if(msg.parentNode.id === `room${roomInfo.number}`) {
+        msg.innerText = 'You\'re all set! Booking confirmed.'
+      }
+    });
+  }
+
 
 
 
