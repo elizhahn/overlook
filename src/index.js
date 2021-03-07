@@ -57,7 +57,7 @@ mainPage.addEventListener('click', updateAria);
   }
 
   function displayUserInfo(roomData) {
-    userName.innerText = currentUser.name; 
+    userName.innerText = `Welcome, ${currentUser.name}`; 
     totalStays.innerText = currentUser.calcNumberStays();
     totalSpent.innerText = `$${currentUser.calcTotalSpent(roomData)}`
     currentUser.bookings.forEach(booking => {
