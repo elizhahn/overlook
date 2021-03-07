@@ -146,7 +146,7 @@ roomList.addEventListener('click', findBookingInfo);
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({'userID': currentUser.id, 'date': calendar.value.replaceAll('-', '/'), 'roomNumber': roomInfo})
+      body: JSON.stringify({'userID': currentUser.id, 'date': calendar.value.replaceAll('-', '/'), 'roomNumber': roomInfo.number})
     })
       .then(response => checkForError(response, roomInfo))
       .catch(err => displayErrorMessage(roomInfo))
