@@ -182,6 +182,11 @@ legend {
 }
 
 @media screen and (max-width: 700px) {
+
+  .search-welcome-msg {
+    font-size: 1.5em; 
+  }
+  
   .dashboard-room-filters{
     flex-direction: column; 
   }
