@@ -93,8 +93,8 @@ describe('Hotel', function () {
   });
   it('should filter rooms by room type', function () {
     hotel.checkAvailability('2020/02/06')
-    hotel.filterRooms('suite');
-    expect(hotel.availableRooms).to.deep.equal([{
+    const filteredRooms = hotel.filterRooms('suite');
+    expect(filteredRooms).to.deep.equal([{
       "number": 2,
       "roomType": "suite",
       "bidet": false,
@@ -105,8 +105,8 @@ describe('Hotel', function () {
   });
   it('should return an empty array if no rooms of that type are available', function () {
     hotel.checkAvailability("2020/01/23");
-    hotel.filterRooms('residential suite');
-    expect(hotel.availableRooms).to.deep.equal([]);
+    const filteredRooms = hotel.filterRooms('residential suite');
+    expect(filteredRooms).to.deep.equal([]);
   });
   it('should return room information', function () {
     const roomInfo= hotel.returnRoomInfo(1); 

@@ -11,13 +11,13 @@ class Hotel {
     const availableRoomTypes = this.availableRooms.filter(room => {
       return roomType === room.roomType; 
     });
-    this.availableRooms = availableRoomTypes; 
+    return availableRoomTypes; 
   }
 
-  checkAvailability(date) {
+  checkAvailability(date) { 
     const bookedRooms = this.bookings.filter(booking => {
       return date === booking.date
-    });
+    }); 
     const roomNumbers = bookedRooms.map(booking => {
       return booking.roomNumber; 
     });

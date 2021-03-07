@@ -15,12 +15,12 @@
     <section class="search" role ="search">
       <h1 class="search-welcome-msg" id="userName">Welcome, Elizabeth Hahn</h1>
       <div class="search-container">
-        <label for="checkin">check in
+        <label for="checkin" id="testDate">check in
         <input type="date" id="checkin" name="book-date"
           value="2021-03-11"
-          min="2020-01-01" max="2021-12-31">
+          min="2020-01-01" max="2021-12-31" class="date-selector" id="dateSelector">
         </label>
-        <button class="btn">Search Rooms</button>
+        <button class="btn" id="searchRooms">Search Rooms</button>
       </div>
     </section>
     <section class="dashboard">
@@ -45,23 +45,23 @@
       </aside>
       <section class="dashboard-rooms">
         <h2>Available Rooms</h2>
-        <fieldset class="dashboard-room-filters">
+        <fieldset class="dashboard-room-filters" id="roomTypes">
           <legend>Choose a room type</legend>
           <label class="item-title" for="suite">Suite
-          <input type="radio" id="suite" name="room-type" value="suite">
+          <input class="room-type" type="radio" id="suite" name="room-type" value="suite">
           </label>
           <label class="item-title" for="juniorSuite">Junior Suite
-          <input type="radio" id="juniorSuite" name="room-type" value="juniorSuite">
+          <input class="room-type" type="radio" id="juniorSuite" name="room-type" value="juniorSuite">
           </label>
           <label class="item-title" for="residentialSuite">Residential Suite
-          <input type="radio" id="residentialSuite" name="room-type" value="residentialSuite">
+          <input class="room-type" type="radio" id="residentialSuite" name="room-type" value="residentialSuite">
           </label>
           <label class="item-title" for="single">Single
-          <input type="radio" id="single" name="room-type" value="single">
+          <input class= "room-type" type="radio" id="single" name="room-type" value="single">
           </label>
         </fieldset>
        <section class="dashboard-rooms-container">
-         <ul class="dashboard-rooms-list">
+         <ul class="dashboard-rooms-list" id="roomList">
            <li class="dashboard-room-item">
             <article class="dashboard-room">
               <img class="room-img" src="./images/alexander-kaunas-67-sOi7mVIk-unsplash.jpg" alt="sunny hotel room featuring a queen bed">
