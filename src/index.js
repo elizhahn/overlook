@@ -23,35 +23,31 @@ const userName = document.getElementById('userName');
 const btnSearchRooms = document.getElementById('searchRooms');
 const availableRoomsList = document.getElementById('roomList')
 const calendar = document.querySelector('.date-selector')
+const btnRoomTypes = document.querySelectorAll('.room-type');
+const roomTypeSection = document.getElementById('roomTypes');
 let currentUser;
 let hotel; 
 
 btnSearchRooms.addEventListener('click', filterRoomsByDate);
-
+roomTypeSection.addEventListener('click', filterRoomsByType);
 
   function createUser(userData, bookingData) {
    currentUser = new User(userData);
    currentUser.updateBookingHistory(bookingData);
   }
 
-  function displayUserName() {
+  function displayUserInfo(roomData) {
     userName.innerText = currentUser.name; 
-  }
-
-  function displayUserTotals(roomData) {
-      totalStays.innerText = currentUser.calcNumberStays();
-      totalSpent.innerText = `$${currentUser.calcTotalSpent(roomData)}`
-  }
-
-  function displayUserHistory() {
+    totalStays.innerText = currentUser.calcNumberStays();
+    totalSpent.innerText = `$${currentUser.calcTotalSpent(roomData)}`
     currentUser.bookings.forEach(booking => {
       const bookedRoom = hotel.returnRoomInfo(booking.roomNumber); 
       userHistory.innerHTML += `<li class="dashboard-stays-item">
       <p>${booking.date}</p>
       <p>${bookedRoom.roomType}</p>
   </li>`
-    });
-  }
+  });
+}
 
   function findPicture(room) {
     switch(true) {
@@ -66,8 +62,8 @@ btnSearchRooms.addEventListener('click', filterRoomsByDate);
     } 
   }
 
-  function displayAvailableRooms(date) {
-    hotel.checkAvailability(date);
+  function displayAvailableRooms() {
+    availableRoomsList.innerHTML = '';
     hotel.availableRooms.forEach(room => {
     const roomPicture = findPicture(room); 
     availableRoomsList.innerHTML += ` <li class="dashboard-room-item">
@@ -78,7 +74,7 @@ btnSearchRooms.addEventListener('click', filterRoomsByDate);
         <p class="room-description">${room.bidet ? 'bidet' : ''}</p>
         <p class="room-description">bedsize: ${room.bedSize} King</p>
         <p class="room-description">number of beds: ${room.numBeds}</p>
-        <p class="room-description">nightly rate: ${room.costPerNight}</p>
+        <p class="room-description">nightly rate: $${room.costPerNight}</p>
       </div>
     </article>
     <div>
@@ -88,12 +84,50 @@ btnSearchRooms.addEventListener('click', filterRoomsByDate);
     });
   }
 
-  function filterRoomsByDate() {
+  function displayFilteredRooms(roomType) {
     availableRoomsList.innerHTML = '';
-    const date = calendar.value.replaceAll("-", "/")
-    console.log(date);
-    displayAvailableRooms(date); 
+    const filteredRooms = hotel.filterRooms(roomType);
+    filteredRooms.forEach(room => {
+    const roomPicture = findPicture(room); 
+    availableRoomsList.innerHTML += ` <li class="dashboard-room-item">
+    <article class="dashboard-room">
+      ${roomPicture}
+      <div class="room-info">
+        <p class="room-description">room: ${room.roomType}</p>
+        <p class="room-description">${room.bidet ? 'bidet' : ''}</p>
+        <p class="room-description">bedsize: ${room.bedSize} King</p>
+        <p class="room-description">number of beds: ${room.numBeds}</p>
+        <p class="room-description">nightly rate: $${room.costPerNight}</p>
+      </div>
+    </article>
+    <div>
+      <button class="btn">Book Now</button>
+    </div>
+   </li>`
+    });
+
   }
+
+  function filterRoomsByDate() {
+    const date = calendar.value.replaceAll("-", "/")
+    hotel.checkAvailability(date);
+    displayAvailableRooms(); 
+  }
+
+  function filterRoomsByType(event) {
+    let filter; 
+    if(event.target.id === 'suite') {
+      filter = 'suite'
+  } else if(event.target.id === 'juniorSuite') {
+      filter = 'junior suite'
+  } else if(event.target.id === 'residentialSuite') {
+      filter = 'residential suite'
+  }  else {
+      filter = 'single room'
+    }
+    displayFilteredRooms(filter);   
+  }
+
 
 
 // ------------------Where all the magic happens-------------------
@@ -101,10 +135,9 @@ btnSearchRooms.addEventListener('click', filterRoomsByDate);
    
     const date = '2020/04/22'
     hotel = new Hotel(date, roomData, bookingData); 
-    console.log(hotel)
     createUser(userData, bookingData);  
-    displayUserTotals(roomData); 
-    displayUserHistory();
-    displayUserName(); 
-    displayAvailableRooms(date);    
+    displayUserInfo(roomData); 
+    hotel.checkAvailability(hotel.date); 
+    displayAvailableRooms();
+       
   } 
