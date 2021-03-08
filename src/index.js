@@ -20,20 +20,31 @@ const totalStays = document.getElementById('numberStays');
 const totalSpent = document.getElementById('totalSpent');
 const userHistory = document.getElementById('userHistory');
 const userName = document.getElementById('userName'); 
-const btnSearchRooms = document.getElementById('searchRooms');
 const availableRoomsList = document.getElementById('roomList')
 const calendar = document.querySelector('.date-selector')
 const roomTypeSection = document.getElementById('roomTypes');
 const roomList = document.getElementById('roomList'); 
-const apology = document.getElementById('dashboardMsg');
+const loginPage = document.getElementById('loginPage');
 const mainPage = document.getElementById('mainPage');
+const dashboard = document.getElementById('dashboard');
+const btnSearchRooms = document.getElementById('searchRooms');
+const btnLogin = document.getElementById('loginBtn');
+const inputUserName = document.getElementById('user');
+const inputPassword = document.getElementById('password');
+const userNameErrorMsg = document.getElementById('usernameErrorMsg');
+const passwordErrorMsg = document.getElementById('passwordErrorMsg');
+const serverErrorMsg = document.getElementById('serverMsg');
+const apology = document.getElementById('dashboardMsg');
+ 
 let currentUser;
 let hotel; 
 
 btnSearchRooms.addEventListener('click', filterRoomsByDate);
+btnLogin.addEventListener('click', validateUser);
 roomTypeSection.addEventListener('click', filterRoomsByType);
 roomList.addEventListener('click', findBookingInfo);
 mainPage.addEventListener('click', updateAria);
+
 
   function hide(element) {
     element.classList.add('hidden'); 
@@ -51,15 +62,58 @@ mainPage.addEventListener('click', updateAria);
   } 
   }
 
-  function createUser(userData, bookingData) {
-   currentUser = new User(userData);
-   currentUser.updateBookingHistory(bookingData);
+  function validateUser(event) {
+   event.preventDefault(); 
+   const userName = inputUserName.value.match(/^[A-Z][a-z]{7}\d{1,2}$/i);
+   const preFix = inputUserName.value.match(/customer/g)
+    if(userName === null || preFix === null) {
+      userNameErrorMsg.innerText = "invalid username, please try again"
+  } else if(inputPassword.value !== "overlook2021") {
+     hide(usernameErrorMsg);
+     passwordErrorMsg.innerText = "invalid password, please try again" 
+  } else { 
+    hide(passwordErrorMsg);
+    const userId = inputUserName.value.match(/\d+/g)
+    findUser(userId)
+  }
   }
 
-  function displayUserInfo(roomData) {
+  function findUser(id) {
+    console.log(id[0])
+    fetch(`http://localhost:3001/api/v1/customers/${id[0]}`)
+    .then(response => checkForLoginError(response))
+    .then(data => {
+       console.log(data)
+       login(data, hotel.bookings);
+    })
+    .catch(err => displayServerError())
+  }
+
+  function displayServerError() {
+    serverErrorMsg.innerText = "Something went wrong on our end, please try again later"
+  }
+
+  function checkForLoginError(response) {
+    if(!response.ok) {
+      console.log("test response not ok")
+      userNameErrorMsg.innerText = "please double check your username ID"
+  } else {
+     return response.json();    
+  }
+  }
+
+  function login(userData, bookingData) {
+   hide(loginPage);
+   show(dashboard); 
+   currentUser = new User(userData); 
+   currentUser.updateBookingHistory(bookingData); 
+   displayUserInfo(); 
+  }
+
+  function displayUserInfo() { 
     userName.innerText = `Welcome, ${currentUser.name}`; 
     totalStays.innerText = currentUser.calcNumberStays();
-    totalSpent.innerText = `$${currentUser.calcTotalSpent(roomData)}`
+    totalSpent.innerText = `$${currentUser.calcTotalSpent(hotel.rooms)}`
     currentUser.bookings.forEach(booking => {
       const bookedRoom = hotel.returnRoomInfo(booking.roomNumber); 
       userHistory.innerHTML += `<li class="dashboard-stays-item">
@@ -220,12 +274,12 @@ mainPage.addEventListener('click', updateAria);
 
 // ------------------Where all the magic happens-------------------
   function initialize(userData, roomData, bookingData) {
-   
-    const date = '2020/04/22'
+    
+    //call validateUserhere?
+    const date = '2021/03/08'
     hotel = new Hotel(date, roomData, bookingData); 
-    createUser(userData, bookingData);  
-    displayUserInfo(roomData); 
     hotel.checkAvailability(hotel.date); 
-    displayAvailableRooms();
-       
+    displayAvailableRooms(); 
+    // createUser(userData, bookingData);  
+    // displayUserInfo(roomData);   
   } 
