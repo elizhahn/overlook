@@ -3,14 +3,6 @@
 @import 'text-elements';
 @import 'mixins';
 
-// *,
-// *:after,
-// *:before {
-// box-sizing: border-box;
-// margin: 0;
-// padding: 0;
-// }
-
 html {
   height: 100%;   
 }
@@ -26,7 +18,7 @@ main {
 // ---------------login page-------------------------
 
 .login-container {
-  display: flex;
+  @include flexStyle(flex, row);
   justify-content: center;
   align-items: center;
   height: 100%; 
@@ -37,7 +29,6 @@ main {
   background-color: #FFF;
   box-shadow: $card; 
   width: 35%;
-  // height: 60%;
   border-radius: 5px;
   padding: 20px; 
 }
@@ -56,8 +47,7 @@ main {
 }
 
 .login-form {
-  display: flex; 
-  flex-direction: column; 
+  @include flexStyle(flex, column);
   align-content: space-evenly; 
 
 }
@@ -101,7 +91,7 @@ main {
 }
 
 .search {
-  display: flex;
+  @include flexStyle(flex, row); 
   padding: 30px;   
 }
 
@@ -112,7 +102,7 @@ main {
 }
 
 .search-container {
-  display:flex; 
+  @include flexStyle(flex, row); 
   align-items: center;
   justify-content: space-around; 
   width: 50%; 
@@ -128,7 +118,7 @@ main {
 // ----------------History box-----------------------
 
 .dashboard {
-  display: flex;
+  @include flexStyle(flex, row); 
 }
 
 .dashboard-history {
@@ -153,7 +143,7 @@ main {
 }
 
 .dashboard-stays-title {
-  display: flex;
+  @include flexStyle(flex, row); 
   justify-content: space-between;
 }
 
@@ -170,7 +160,7 @@ main {
 // ---------------Rooms Box--------------------
 
 .dashboard-room-filters {
-  display: flex; 
+  @include flexStyle(flex, row);  
   justify-content: space-around;
   padding: 20px 0px; 
   @include setBorder(border-bottom); 
@@ -188,13 +178,13 @@ legend {
 }
 
 .dashboard-room-item {
- display: flex; 
+ @include flexStyle(flex, row); 
  @include setBorder(border-bottom);
  padding-top: 20px;
 }
 
 .dashboard-room {
-  display: flex;
+  @include flexStyle(flex, row); 
   align-items: flex-start; 
   flex: 1;
   margin-right: 10px;  
@@ -218,6 +208,11 @@ legend {
 
 // ------------------tablet view-----------------------
 @media screen and (max-width: 980px) {
+
+  .login-box {
+    width: 50%; 
+  }
+
   main {
     margin: 0px; 
   }
@@ -257,6 +252,10 @@ legend {
 }
 
 @media screen and (max-width: 700px) {
+
+  .login-box {
+    width: 75%; 
+  }
 
   .search-welcome-msg {
     font-size: 1.5em; 
