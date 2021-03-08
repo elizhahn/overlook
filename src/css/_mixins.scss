@@ -6,3 +6,8 @@
 @mixin setBorder($borderRule) {
   #{$borderRule}: thin solid $light-purple
 }
+
+@mixin flexStyle($display, $direction) {
+  display: $display;
+  flex-direction: $direction; 
+}

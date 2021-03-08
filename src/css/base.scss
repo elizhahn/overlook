@@ -3,20 +3,12 @@
 @import 'text-elements';
 @import 'mixins';
 
-// *,
-// *:after,
-// *:before {
-// box-sizing: border-box;
-// margin: 0;
-// padding: 0;
-// }
-
 html {
   height: 100%;   
 }
 
 body {
-  font-family: $primary-text; 
+  font-family: 'Verdana', 'Arial', 'Helvetica', sans-serif;
   height: 100%; 
 }
 main {
@@ -26,7 +18,7 @@ main {
 // ---------------login page-------------------------
 
 .login-container {
-  display: flex;
+  @include flexStyle(flex, row);
   justify-content: center;
   align-items: center;
   height: 100%; 
@@ -37,35 +29,14 @@ main {
   background-color: #FFF;
   box-shadow: $card; 
   width: 35%;
-  // height: 60%;
   border-radius: 5px;
   padding: 20px; 
 }
 
-.welcome-title {
-  color: $purple; 
-  font-size: 1.5em;
-  font-weight: 400;
-  text-align: center;
-  padding: 20px;
-  @include setBorder(border-bottom);
-}
-
-.login-title {
-  font-weight: 400; 
-}
-
 .login-form {
-  display: flex; 
-  flex-direction: column; 
+  @include flexStyle(flex, column);
   align-content: space-evenly; 
 
-}
-
-.login-error-msg {
-  padding-top: 5px;
-  margin: 0px 29px;
-  font-size: .8em;
 }
 
 .input-box {
@@ -89,30 +60,18 @@ main {
 
 // -------------header and search area---------------
 
-.title {
-  color: #FFF;
-  background-color: $purple;
-  padding: 15px; 
-}
-
 .purple-accent {
   background-color: $dark-purple;
   height: 30px; 
 }
 
 .search {
-  display: flex;
+  @include flexStyle(flex, row); 
   padding: 30px;   
 }
 
-.search-welcome-msg {
-  font-style: italic;
-  font-weight: 400; 
-  width: 50%; 
-}
-
 .search-container {
-  display:flex; 
+  @include flexStyle(flex, row); 
   align-items: center;
   justify-content: space-around; 
   width: 50%; 
@@ -128,7 +87,7 @@ main {
 // ----------------History box-----------------------
 
 .dashboard {
-  display: flex;
+  @include flexStyle(flex, row); 
 }
 
 .dashboard-history {
@@ -152,33 +111,28 @@ main {
   @extend.dashboard-summary; 
 }
 
-.dashboard-stays-title {
-  display: flex;
+.dashboard-stays-title-container {
+  @include flexStyle(flex, row); 
   justify-content: space-between;
 }
 
 .dashboard-summary-item {
-  @extend.dashboard-stays-title;
+  @extend.dashboard-stays-title-container;
 }
 
 .dashboard-stays-item {
   padding: 5px 0px; 
   @include setBorder(border-top);
-  @extend.dashboard-stays-title;
+  @extend.dashboard-stays-title-container;
 }
 
 // ---------------Rooms Box--------------------
 
 .dashboard-room-filters {
-  display: flex; 
+  @include flexStyle(flex, row);  
   justify-content: space-around;
   padding: 20px 0px; 
   @include setBorder(border-bottom); 
-}
-
-legend {
-  color: $purple;
-  font-weight: 600;
 }
 
 .dashboard-rooms-list {
@@ -188,13 +142,13 @@ legend {
 }
 
 .dashboard-room-item {
- display: flex; 
+ @include flexStyle(flex, row); 
  @include setBorder(border-bottom);
  padding-top: 20px;
 }
 
 .dashboard-room {
-  display: flex;
+  @include flexStyle(flex, row); 
   align-items: flex-start; 
   flex: 1;
   margin-right: 10px;  
@@ -214,10 +168,13 @@ legend {
   width: 25%; 
 }
 
-
-
 // ------------------tablet view-----------------------
 @media screen and (max-width: 980px) {
+
+  .login-box {
+    width: 50%; 
+  }
+
   main {
     margin: 0px; 
   }
@@ -257,6 +214,10 @@ legend {
 }
 
 @media screen and (max-width: 700px) {
+
+  .login-box {
+    width: 75%; 
+  }
 
   .search-welcome-msg {
     font-size: 1.5em; 
