@@ -125,7 +125,18 @@ mainPage.addEventListener('click', updateAria);
       <p>${bookedRoom.roomType}</p>
   </li>`
   });
-}
+    colorNewBookings(); 
+ }
+
+ function colorNewBookings() {
+  const bookings = document.querySelectorAll(".dashboard-stays-item");
+  bookings.forEach(booking => {
+    if(booking.firstChild.nextSibling.innerText >= hotel.date) {
+        booking.classList.add('purple'); 
+    }
+  });
+ }
+
 
   function findPicture(room) {
     switch(true) {
@@ -222,10 +233,6 @@ mainPage.addEventListener('click', updateAria);
       displayFilteredRooms(filteredRooms); 
       show(apology); 
   }
-  }
-
-  function disableBookingBtn() {
-    
   }
 
   function findBookingInfo(event) { 
