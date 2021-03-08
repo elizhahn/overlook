@@ -62,6 +62,11 @@ mainPage.addEventListener('click', updateAria);
   } 
   }
 
+  function updateCalendar(date) {
+    calendar.setAttribute('min', date.replaceAll('/', '-'));
+    calendar.setAttribute('value', date.replaceAll('/', '-')); 
+  }
+
   function validateUser(event) {
    event.preventDefault(); 
    const userName = inputUserName.value.match(/^[A-Z][a-z]{7}\d{1,2}$/i);
@@ -79,11 +84,9 @@ mainPage.addEventListener('click', updateAria);
   }
 
   function findUser(id) {
-    console.log(id[0])
     fetch(`http://localhost:3001/api/v1/customers/${id[0]}`)
     .then(response => checkForLoginError(response))
     .then(data => {
-       console.log(data)
        login(data, hotel.bookings);
     })
     .catch(err => displayServerError())
@@ -110,10 +113,11 @@ mainPage.addEventListener('click', updateAria);
    displayUserInfo(); 
   }
 
-  function displayUserInfo() { 
+  function displayUserInfo() {
     userName.innerText = `Welcome, ${currentUser.name}`; 
     totalStays.innerText = currentUser.calcNumberStays();
     totalSpent.innerText = `$${currentUser.calcTotalSpent(hotel.rooms)}`
+    userHistory.innerHTML = ``;
     currentUser.bookings.forEach(booking => {
       const bookedRoom = hotel.returnRoomInfo(booking.roomNumber); 
       userHistory.innerHTML += `<li class="dashboard-stays-item">
@@ -238,8 +242,14 @@ mainPage.addEventListener('click', updateAria);
       body: JSON.stringify({'userID': currentUser.id, 'date': calendar.value.replaceAll('-', '/'), 'roomNumber': roomInfo.number})
     })
       .then(response => checkForError(response, roomInfo))
+      .then(booking => { 
+        hotel.addNewBooking(booking.newBooking);
+        currentUser.updateBookingHistory(hotel.bookings);
+        displayUserInfo(); 
+      })
       .catch(err => displayErrorMessage(roomInfo))
   }
+
 
   function checkForError (response, roomInfo) {
     if (!response.ok) { 
@@ -269,17 +279,11 @@ mainPage.addEventListener('click', updateAria);
     });
   }
 
-
-
-
-// ------------------Where all the magic happens-------------------
   function initialize(userData, roomData, bookingData) {
-    
-    //call validateUserhere?
-    const date = '2021/03/08'
+    const date = new Date().toISOString().slice(0, 10).replaceAll('-', '/');
+    updateCalendar(date); 
     hotel = new Hotel(date, roomData, bookingData); 
     hotel.checkAvailability(hotel.date); 
     displayAvailableRooms(); 
-    // createUser(userData, bookingData);  
-    // displayUserInfo(roomData);   
+   
   } 
