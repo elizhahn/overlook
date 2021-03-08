@@ -33,29 +33,10 @@ main {
   padding: 20px; 
 }
 
-.welcome-title {
-  color: $purple; 
-  font-size: 1.5em;
-  font-weight: 400;
-  text-align: center;
-  padding: 20px;
-  @include setBorder(border-bottom);
-}
-
-.login-title {
-  font-weight: 400; 
-}
-
 .login-form {
   @include flexStyle(flex, column);
   align-content: space-evenly; 
 
-}
-
-.login-error-msg {
-  padding-top: 5px;
-  margin: 0px 29px;
-  font-size: .8em;
 }
 
 .input-box {
@@ -79,12 +60,6 @@ main {
 
 // -------------header and search area---------------
 
-.title {
-  color: #FFF;
-  background-color: $purple;
-  padding: 15px; 
-}
-
 .purple-accent {
   background-color: $dark-purple;
   height: 30px; 
@@ -93,12 +68,6 @@ main {
 .search {
   @include flexStyle(flex, row); 
   padding: 30px;   
-}
-
-.search-welcome-msg {
-  font-style: italic;
-  font-weight: 400; 
-  width: 50%; 
 }
 
 .search-container {
@@ -142,19 +111,19 @@ main {
   @extend.dashboard-summary; 
 }
 
-.dashboard-stays-title {
+.dashboard-stays-title-container {
   @include flexStyle(flex, row); 
   justify-content: space-between;
 }
 
 .dashboard-summary-item {
-  @extend.dashboard-stays-title;
+  @extend.dashboard-stays-title-container;
 }
 
 .dashboard-stays-item {
   padding: 5px 0px; 
   @include setBorder(border-top);
-  @extend.dashboard-stays-title;
+  @extend.dashboard-stays-title-container;
 }
 
 // ---------------Rooms Box--------------------
@@ -164,11 +133,6 @@ main {
   justify-content: space-around;
   padding: 20px 0px; 
   @include setBorder(border-bottom); 
-}
-
-legend {
-  color: $purple;
-  font-weight: 600;
 }
 
 .dashboard-rooms-list {
@@ -203,8 +167,6 @@ legend {
 .book-container {
   width: 25%; 
 }
-
-
 
 // ------------------tablet view-----------------------
 @media screen and (max-width: 980px) {

@@ -1,6 +1,50 @@
+@import 'mixins';
+
+// -----------------login box---------------------------
+
+.welcome-title {
+  color: $purple; 
+  font-size: 1.5em;
+  font-weight: 400;
+  text-align: center;
+  padding: 20px;
+  @include setBorder(border-bottom);
+}
+
+.login-title {
+  font-weight: 400; 
+}
+
+.login-error-msg {
+  padding-top: 5px;
+  margin: 0px 29px;
+  font-size: .8em;
+}
+
+// ---------------user dashboard------------------------
+
+.main-title {
+  color: #FFF;
+  background-color: $purple;
+  padding: 15px; 
+}
+
+.search-welcome-msg {
+  font-style: italic;
+  font-weight: 400; 
+  width: 50%; 
+}
+
 .item-title {
   font-weight:600;
   color: #757575;
+}
+
+// ----------------available Rooms Box----------------------
+
+legend {
+  color: $purple;
+  font-weight: 600;
 }
 
 .room-description {
