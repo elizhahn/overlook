@@ -62,6 +62,11 @@ mainPage.addEventListener('click', updateAria);
   } 
   }
 
+  function updateCalendar(date) {
+    calendar.setAttribute('min', date.replaceAll('/', '-'));
+    calendar.setAttribute('value', date.replaceAll('/', '-')); 
+  }
+
   function validateUser(event) {
    event.preventDefault(); 
    const userName = inputUserName.value.match(/^[A-Z][a-z]{7}\d{1,2}$/i);
@@ -251,7 +256,6 @@ mainPage.addEventListener('click', updateAria);
       displayErrorMessage(roomInfo);
     } else {
       displaySuccessMsg(roomInfo)
-      // console.log(response.json())
       return response.json(); 
     }
   }
@@ -275,12 +279,9 @@ mainPage.addEventListener('click', updateAria);
     });
   }
 
-
-
-
-// ------------------Where all the magic happens-------------------
   function initialize(userData, roomData, bookingData) {
-    const date = '2021/03/08'
+    const date = new Date().toISOString().slice(0, 10).replaceAll('-', '/');
+    updateCalendar(date); 
     hotel = new Hotel(date, roomData, bookingData); 
     hotel.checkAvailability(hotel.date); 
     displayAvailableRooms(); 
