@@ -33,33 +33,12 @@ class Hotel {
     });
     return room; 
   }
+
+  addNewBooking(booking) {
+    this.bookings.unshift(booking); 
+  }
   
 }
 
 export default Hotel; 
 
-/*
-bookings Data: 
-{
-    "id": "5fwrgu4i7k55hl6t5", unique id for booking
-    "userID": 43, who booked
-    "date": "2020/01/24",
-    "roomNumber": 24,
-    "roomServiceCharges": []
-  }
-customer Data: 
-  {
-    "id": 1,
-    "name": "Leatha Ullrich"
-  }
-Rooms Data: 
-  {
-    "number": 25,
-    "roomType": "single room",
-    "bidet": true,
-    "bedSize": "queen",
-    "numBeds": 1,
-    "costPerNight": 305.85
-  }
-
-*/
