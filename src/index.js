@@ -156,7 +156,7 @@ mainPage.addEventListener('click', updateAria);
       </div>
     </article>
     <div class="book-container" id="room${room.number}">
-      <button class="btn book-btn">Book Now</button>
+      <button class="btn book-btn" id="btn${room.number}">Book Now</button>
       <p class="bookingMsg"></p>
     </div>
    </li>`
@@ -178,7 +178,7 @@ mainPage.addEventListener('click', updateAria);
         <p class="room-description">nightly rate: $${room.costPerNight}</p>
       </div>
     </article>
-    <div id="room${room.number}">
+    <div class="book-container" id="room${room.number}">
       <button class="btn book-btn">Book Now</button>
       <p class="bookingMsg"></p>
     </div>
@@ -224,16 +224,21 @@ mainPage.addEventListener('click', updateAria);
   }
   }
 
+  function disableBookingBtn() {
+    
+  }
+
   function findBookingInfo(event) { 
     let roomNumber; 
+    const clickedButton = event.target
     if(event.target.classList.contains('book-btn')) {
        roomNumber = Number(event.target.parentNode.id.replace("room", ''))
     }
      const room = hotel.returnRoomInfo(roomNumber);
-     bookRoom(room); 
+     bookRoom(room, clickedButton); 
   }
 
-  function bookRoom(roomInfo) { 
+  function bookRoom(roomInfo, button) { 
     fetch(`http://localhost:3001/api/v1/bookings`, {
       method: 'POST',
       headers: {
@@ -243,6 +248,7 @@ mainPage.addEventListener('click', updateAria);
     })
       .then(response => checkForError(response, roomInfo))
       .then(booking => { 
+        button.disabled = true;
         hotel.addNewBooking(booking.newBooking);
         currentUser.updateBookingHistory(hotel.bookings);
         displayUserInfo(); 
