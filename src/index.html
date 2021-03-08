@@ -7,19 +7,21 @@
     <title>overlook</title>
   </head>
   <body>
-    <section class="login-container">
+    <section class="login-container" id="loginPage">
       <section class="login-box">
         <h1 class="welcome-title">Welcome to the Overlook<h1>
         <h2 class="login-title">Please Login</h2>
-        <form class="login-form">
-          <input class="input-box" name="userName" placeholder="username" id="user-name" required>
+        <form class="login-form" method="GET">
+          <input class="input-box" type="text" name="userName" placeholder="username" id="user" required>
+          <p class="username-error-msg" id="usernameErrorMsg"></p>
           <input class="input-box" type="password" name="password" placeholder="password" id="password" required>
-          <p class="login-error-msg"></p>
-          <input class="btn login-btn" type="submit" value="Login"/>
+          <p class="password-error-msg" id="passwordErrorMsg"></p>
+          <input class="btn login-btn" type="submit" value="Login" id="loginBtn"/>
+          <p id="serverMsg"></p>
         </form>
       </section>
     </section>
-    <section class="container hidden">
+    <section class="container hidden" id="dashboard">
       <header class="title" role="banner">
         <h1>The Overlook</h1>
       </header>
