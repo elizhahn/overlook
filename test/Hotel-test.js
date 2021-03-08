@@ -119,4 +119,22 @@ describe('Hotel', function () {
       "costPerNight": 358.4
     })
   })
+  it('should add a new booking to the booking list', function () {
+    const newBooking = {
+      "id": "2fiknu4i7k55h7ygd",
+      "userID": 1,
+      "date": "2020/02/05",
+      "roomNumber": 4,
+      "roomServiceCharges": []
+    }
+    hotel.addNewBooking(newBooking);
+    expect(hotel.bookings.length).to.equal(8);
+    expect(hotel.bookings[0]).to.deep.equal({
+      "id": "2fiknu4i7k55h7ygd",
+      "userID": 1,
+      "date": "2020/02/05",
+      "roomNumber": 4,
+      "roomServiceCharges": []
+    });
+  });
 });
