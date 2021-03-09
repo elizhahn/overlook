@@ -31,8 +31,7 @@ describe('User', function() {
     expect(user1.id).to.equal(1);
     expect(user1.name).to.equal("Elizabeth Hahn")
   })
-  it('should have a default password and bookings history', function () {
-    expect(user1.password).to.equal('overlook2021');
+  it('should have a default bookings history', function () {
     expect(user1.bookings).to.deep.equal([]);
   })
   it('should update a user\'s booking history', function() {
