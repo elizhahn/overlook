@@ -37,17 +37,6 @@ class User {
     }, 0);
     return Number(customerSpending.toFixed(2)); 
   }
-   
-  createNewBooking(roomNumber, date) {
-      const newBooking = 
-      {
-        userID: this.id,
-        date: date,
-        roomNumber: roomNumber,
-        roomServiceCharges: []
-      };
-      return newBooking; 
-  }
 }
 
 

@@ -105,11 +105,17 @@ mainPage.addEventListener('click', updateAria);
   }
   }
 
+  //Manager login function here
+
+
+
+
   function login(userData, bookingData) {
    hide(loginPage);
    show(dashboard); 
    currentUser = new User(userData); 
    currentUser.updateBookingHistory(bookingData); 
+   //move displayAvailable rooms here
    displayUserInfo(); 
   }
 

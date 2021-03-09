@@ -37,6 +37,12 @@ class Hotel {
   addNewBooking(booking) {
     this.bookings.unshift(booking); 
   }
+
+  //Method to calculate total revenue for today's date
+
+  //Method to calculate total percentage of rooms occupied
+
+  //Method to search users and list
   
 }
 
