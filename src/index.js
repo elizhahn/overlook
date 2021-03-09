@@ -89,17 +89,17 @@ mainPage.addEventListener('click', updateAria);
     .then(data => {
        login(data, hotel.bookings);
     })
-    .catch(err => displayServerError())
+    .catch(err => displayError())
   }
 
-  function displayServerError() {
+  function displayError(error) { 
     serverErrorMsg.innerText = "Something went wrong on our end, please try again later"
   }
 
   function checkForLoginError(response) {
     if(!response.ok) {
-      console.log("test response not ok")
       userNameErrorMsg.innerText = "please double check your username ID"
+      return Promise.reject(error);
   } else {
      return response.json();    
   }
