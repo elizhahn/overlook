@@ -137,4 +137,18 @@ describe('Hotel', function () {
       "roomServiceCharges": []
     });
   });
+  it('should return daily revenue', function () {
+    const todayRevenue = hotel.calcTodayRevenue('2020/02/05')
+    expect(todayRevenue).to.equal(2493.55); 
+  });
+  it('should return daily percentage occupied', function () {
+    hotel.checkAvailability('2020/02/05')
+    const percent1 = hotel.calcPercentOccupied();
+    expect(percent1).to.equal(100);
+
+    hotel.checkAvailability('2020/02/06');
+    console.log(hotel.availableRooms) 
+    const percent2 = hotel.calcPercentOccupied();
+    expect(percent2).to.equal(0);
+  })
 });
