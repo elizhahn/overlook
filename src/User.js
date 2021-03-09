@@ -1,7 +1,6 @@
 class User {
   constructor (userData) {
     this.id = userData.id;
-    this.password = 'overlook2021';
     this.name = userData.name; 
     this.bookings = []; 
   }
