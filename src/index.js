@@ -5,16 +5,6 @@ import './images/paul-postema-vn30_b1ik6s-unsplash.jpg'
 import './images/venice-hotel-tqwvsyL2Kd0-unsplash.jpg' 
 import User from './User';
 import Hotel from './Hotel';
-
-const apiData = [fetch('http://localhost:3001/api/v1/customers/1'), fetch('http://localhost:3001/api/v1/rooms'), fetch('http://localhost:3001/api/v1/bookings')]
-
-Promise.all(apiData)
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(data => {
-    const [userData, roomData, bookingData] = data;
-    initialize(userData, roomData.rooms, bookingData.bookings);
-  });
-
  
 const totalStays = document.getElementById('numberStays');
 const totalSpent = document.getElementById('totalSpent');
@@ -34,17 +24,17 @@ const inputPassword = document.getElementById('password');
 const userNameErrorMsg = document.getElementById('usernameErrorMsg');
 const passwordErrorMsg = document.getElementById('passwordErrorMsg');
 const serverErrorMsg = document.getElementById('serverMsg');
+const pageErrorMsg = document.getElementById('pageErrorMsg')
 const apology = document.getElementById('dashboardMsg');
- 
 let currentUser;
 let hotel; 
 
+window.addEventListener('load', loadHotelData); 
 btnSearchRooms.addEventListener('click', filterRoomsByDate);
 btnLogin.addEventListener('click', validateUser);
 roomTypeSection.addEventListener('click', filterRoomsByType);
 roomList.addEventListener('click', findBookingInfo);
 mainPage.addEventListener('click', updateAria);
-
 
   function hide(element) {
     element.classList.add('hidden'); 
@@ -66,6 +56,24 @@ mainPage.addEventListener('click', updateAria);
     calendar.setAttribute('min', date.replaceAll('/', '-'));
     calendar.setAttribute('value', date.replaceAll('/', '-')); 
   }
+
+  function loadHotelData() {
+  const apiData = [fetch('http://localhost:3001/api/v1/customers/1'), fetch('http://localhost:3001/api/v1/rooms'), fetch('http://localhost:3001/api/v1/bookings')]
+
+Promise.all(apiData)
+  .then(responses => Promise.all(responses.map(response => response.json())))
+  .then(data => {
+    const [userData, roomData, bookingData] = data;
+    initialize(userData, roomData.rooms, bookingData.bookings);
+  })
+  .catch(err => displayPageLoadError())
+}
+
+function displayPageLoadError() {
+  hide(loginPage); 
+  hide(mainPage);
+  show(pageErrorMsg); 
+}
 
   function validateUser(event) {
    event.preventDefault(); 
@@ -89,17 +97,17 @@ mainPage.addEventListener('click', updateAria);
     .then(data => {
        login(data, hotel.bookings);
     })
-    .catch(err => displayServerError())
+    .catch(err => displayLoginServerError())
   }
 
-  function displayServerError() {
+  function displayLoginServerError() { 
     serverErrorMsg.innerText = "Something went wrong on our end, please try again later"
   }
 
   function checkForLoginError(response) {
     if(!response.ok) {
-      console.log("test response not ok")
       userNameErrorMsg.innerText = "please double check your username ID"
+      return Promise.reject(error);
   } else {
      return response.json();    
   }
