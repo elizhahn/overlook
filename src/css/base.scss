@@ -253,13 +253,19 @@ main {
   padding: 10px;    
 }
 
+.manager-search-rooms {
+  @extend.manager-dashboard;
+  align-items: center;  
+}
+
 .manager-rooms-list {
   padding: 0px; 
 }
 
 .manager-room-item {
   @extend.manager-dashboard;
-  @include setBorder(border-bottom); 
+  @include setBorder(border-bottom);
+  align-items: center;  
   padding: 10px; 
 }
 
