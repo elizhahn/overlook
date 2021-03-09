@@ -141,11 +141,6 @@ describe('Hotel', function () {
     const todayRevenue = hotel.calcTodayRevenue('2020/02/05')
     expect(todayRevenue).to.equal(2493.55); 
   });
-  it('should return total rooms booked', function () {
-    hotel.checkAvailability('2020/02/05');
-    const roomsBooked = hotel.calcRoomsBooked();
-    expect(roomsBooked).to.equal(6);
-  });
   it('should return daily percentage occupied', function () {
     hotel.checkAvailability('2020/02/05')
     const percent1 = hotel.calcPercentOccupied();

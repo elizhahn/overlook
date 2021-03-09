@@ -53,13 +53,8 @@ class Hotel {
     return totalRevenue; 
   }
 
-  calcRoomsBooked() {
-    return this.rooms.length - this.availableRooms.length;
-  }
-
   calcPercentOccupied() {
-    const roomsBooked = this.calcRoomsBooked();
-    // const roomsBooked = this.rooms.length - this.availableRooms.length
+    const roomsBooked = this.rooms.length - this.availableRooms.length
     return Math.round(roomsBooked/this.rooms.length * 100)
   }
 
