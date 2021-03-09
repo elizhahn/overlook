@@ -39,7 +39,7 @@ main {
 
 }
 
-.input-box {
+.input {
   height: 30px;
   margin: 30px 0px; 
 
@@ -176,11 +176,6 @@ main {
   align-items: center; 
 }
 
-.snapshot-title {
-  width: 40%;
-  text-align: center;   
-}
-
 .snapshot-list {
   padding: 0px; 
   width: 60%; 
@@ -190,6 +185,23 @@ main {
   @include flexStyle(flex, row); 
   justify-content: space-around; 
 }
+
+.manager-search-container {
+  @include flexStyle(flex, row);
+  justify-content: center;
+  align-items: center;   
+}
+
+.search-item {
+  padding: 20px;
+  width: 25%;
+}
+
+.search-input {
+   width: 85%;
+   
+}
+
 
 // ------------------tablet view-----------------------
 @media screen and (max-width: 980px) {

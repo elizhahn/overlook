@@ -13,9 +13,9 @@
         <h1 class="welcome-title">Welcome to the Overlook<h1>
         <h2 class="login-title">Please Login</h2>
         <form class="login-form" method="GET">
-          <input class="input-box" aria-label="username" type="text" name="userName" placeholder="username" id="user" required>
+          <input class="input" aria-label="username" type="text" name="userName" placeholder="username" id="user" required>
           <p class="username-error-msg" id="usernameErrorMsg"></p>
-          <input class="input-box" aria-label="password" type="password" name="password" placeholder="password" id="password" required>
+          <input class="input" aria-label="password" type="password" name="password" placeholder="password" id="password" required>
           <p class="password-error-msg" id="passwordErrorMsg"></p>
           <input class="btn login-btn" type="submit" value="Login" id="loginBtn"/>
           <p id="serverMsg"></p>
@@ -104,9 +104,13 @@
           </ul>
         </article>
         <section class="manager-search-container">
-          <label>
-            <input type="text">
+          <label class="search-item" for="search">
+            <input class="input search-input" type="text" id="search" name="search-users" placeholder="search here">
           </label>
+          <div class="search-item">
+            <button class=" btn manager-search-btn">Search Users</button>
+         </div>
+         
         </section>
       </section>
     </main>
