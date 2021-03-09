@@ -2,12 +2,15 @@
 
 // -----------------login box---------------------------
 
+.title {
+  padding:20px
+}
+
 .welcome-title {
   color: $purple; 
   font-size: 1.5em;
   font-weight: 400;
   text-align: center;
-  padding: 20px;
   @include setBorder(border-bottom);
 }
 
@@ -26,7 +29,6 @@
 .main-title {
   color: #FFF;
   background-color: $purple;
-  padding: 15px; 
 }
 
 .search-welcome-msg {
@@ -66,4 +68,8 @@ legend {
 .snapshot-title {
   width: 40%;
   text-align: center;   
+}
+
+.manager-rooms-title {
+  padding: 10px; 
 }

@@ -202,6 +202,59 @@ main {
    
 }
 
+// ---------------manager selected user box------------------
+
+.manager-dashboard {
+  @include flexStyle(flex, row);
+  justify-content: space-around;  
+}
+
+.manager-selected-user-container {
+  @extend.manager-dashboard; 
+  @include setBorder(border-bottom);
+  align-items: center;  
+}
+
+.manager-user-view {
+  width: 35%;
+  box-shadow: $card; 
+}
+
+.selected-user-room-list {
+  list-style-type: none;
+  padding: 0px;
+  margin: 15px;
+}
+
+.selected-user-room-item {
+  @extend.manager-dashboard;
+  @include setBorder(border-bottom); 
+}
+
+.selected-user-checkbox {
+  align-self: center; 
+}
+
+
+
+// ------------manager booking box--------------------------
+
+.manager-booking-view { 
+  box-shadow: $card;
+  width: 60%; 
+}
+
+.manager-checkin-container {
+  @extend.manager-dashboard;
+  align-items: center;
+  @include setBorder(border-bottom);
+  padding: 10px;    
+}
+
+.manager-room-item {
+  @extend.manager-dashboard;
+}
+
 
 // ------------------tablet view-----------------------
 @media screen and (max-width: 980px) {
