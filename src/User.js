@@ -1,7 +1,6 @@
 class User {
   constructor (userData) {
     this.id = userData.id;
-    this.password = 'overlook2021';
     this.name = userData.name; 
     this.bookings = []; 
   }
@@ -36,17 +35,6 @@ class User {
       return totalSpent; 
     }, 0);
     return Number(customerSpending.toFixed(2)); 
-  }
-   
-  createNewBooking(roomNumber, date) {
-      const newBooking = 
-      {
-        userID: this.id,
-        date: date,
-        roomNumber: roomNumber,
-        roomServiceCharges: []
-      };
-      return newBooking; 
   }
 }
 

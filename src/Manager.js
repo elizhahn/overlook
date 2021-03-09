@@ -1,24 +1,38 @@
-// class Manager extends User {
-//   constructor(){
-//     super()
-//     this.bookings = [{date: 4/5/2020, roomType: suite, cost: $345.21}]; 
-//   }
+import User from "./User";
 
-//   calculateTotalSpent(){
-//    method that will use this.bookings array to calculate total cost
-//   }
+class Manager  {
+  constructor(userData){
+    this.selectedUser = '';
+    this.users = userData; 
+  }
 
-//   returnBookings(bookingsData, RoomData) {
-//     method to update the customer's bookings array here
-//   }
+  searchUsers(name) {
+    const selectedUser = this.users.find(user => {
+      const firstandLastName = user.name.split(' ');
+      return firstandLastName.includes(name);
+    });
+    if(!selectedUser) {
+      this.selectedUser = '';
+  } else {
+      const user = new User(selectedUser);  
+      this.selectedUser = user; 
+  }
+  }
+  deleteBooking(bookingId) {
+    const bookingIndex = this.selectedUser.bookings.findIndex(booking => {
+      return booking.id === bookingId;
+    });
+    this.selectedUser.bookings.splice(bookingIndex, 1); 
+  }
+  
+  createNewBooking(roomNum, date) {
+    return {
+      userID: this.selectedUser.id,
+      date: date,
+      roomNumber: roomNum
+    }
+  }
+}
 
-//   addBooking() {
-//     method that will add a new booking to the bookings array when called
-//   }
 
-//   calcNumStays(bookingsData) {
-//     method that will add up total stays at hotel
-//   }
-
-
-// }
+export default Manager; 
