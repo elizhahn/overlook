@@ -239,6 +239,8 @@ main {
 
 // ------------manager booking box--------------------------
 
+
+
 .manager-booking-view { 
   box-shadow: $card;
   width: 60%; 
@@ -251,8 +253,14 @@ main {
   padding: 10px;    
 }
 
+.manager-rooms-list {
+  padding: 0px; 
+}
+
 .manager-room-item {
   @extend.manager-dashboard;
+  @include setBorder(border-bottom); 
+  padding: 10px; 
 }
 
 
