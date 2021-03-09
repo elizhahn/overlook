@@ -7,9 +7,7 @@ import User from './User';
 import Hotel from './Hotel';
 import Manager from './Manager';
  
-const totalStays = document.getElementById('numberStays');
-const totalSpent = document.getElementById('totalSpent');
-const totalSpentSelectedGuest = document.getElementById('selectedGuestTotalSpent');
+
 const userHistory = document.getElementById('userHistory');
 const userName = document.getElementById('userName'); 
 const availableRoomsList = document.getElementById('roomList')
@@ -26,7 +24,8 @@ const dashboard = document.getElementById('dashboard');
 const btnSearchRooms = document.getElementById('searchRooms');
 const btnLogin = document.getElementById('loginBtn');
 const btnManagerLogin = document.getElementById('managerLoginBtn');
-const btnManagerSearchRooms = document.getElementById('managerSearchBtn');
+const btnManagerSearchRooms = document.getElementById('managerSearchRooms');
+const btnManagerSearchGuests = document.getElementById('managerSearchGuests');
 const snapshot = document.querySelectorAll('.snapshot-total') 
 const inputUserName = document.getElementById('user');
 const inputPassword = document.getElementById('password');
@@ -34,6 +33,8 @@ const userNameErrorMsg = document.getElementById('usernameErrorMsg');
 const passwordErrorMsg = document.getElementById('passwordErrorMsg');
 const serverErrorMsg = document.getElementById('serverMsg');
 const pageErrorMsg = document.getElementById('pageErrorMsg')
+const selectedUserErrorMsg = document.getElementById('findGuestErrorMsg');
+const managerBookingMsg = document.getElementById('managerBookingMsg');
 const apology = document.getElementById('dashboardMsg');
 let currentUser;
 let manager;
@@ -42,10 +43,12 @@ let hotel;
 window.addEventListener('load', loadHotelData); 
 btnSearchRooms.addEventListener('click', filterRoomsByDate);
 btnManagerSearchRooms.addEventListener('click', filterRoomsByDate);
+btnManagerSearchGuests.addEventListener('click', searchGuests);
 btnLogin.addEventListener('click', validateUser);
 btnManagerLogin.addEventListener('click', validateManager);
 roomTypeSection.addEventListener('click', filterRoomsByType);
 roomList.addEventListener('click', findBookingInfo);
+managerRoomList.addEventListener('click', findBookingInfo);
 mainPage.addEventListener('click', updateAria);
 
 function hide(element) {
@@ -79,7 +82,7 @@ Promise.all(apiData)
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(data => {
     const [userData, roomData, bookingData] = data;
-    initialize(userData, roomData.rooms, bookingData.bookings);
+    initialize(userData.customers, roomData.rooms, bookingData.bookings);
   })
   .catch(err => displayPageLoadError())
 }
@@ -90,7 +93,7 @@ function initialize(userData, roomData, bookingData) {
   hotel = new Hotel(date, roomData, bookingData); 
   manager = new Manager(userData);
   hotel.checkAvailability(hotel.date); 
-  displayAvailableRooms(); 
+  displayAvailableRooms(hotel.availableRooms); 
   
 } 
 
@@ -176,23 +179,40 @@ function displayRoomsManagerView () {
     <p>${room.roomType}</p>
     <p>${room.number}</p>
     <p>$${room.costPerNight}</p>
-    <button class="btn" id="bookGuest${room.number}">Book Guest</button>
+    <button class="btn book-guest-btn" id="bookGuest${room.number}">Book Guest</button>
   </li>`
   });
 }
 
-// function displaySelectedUserData() {
-//   totalSpentSelectedUser.innerText = 
-// }
-{/* <li class="selected-user-room-item">
-<p>3/11/2021</p>
-<p>"suite"</p>
-<p>room 3</p>
-<input class="selected-user-checkbox" aria-label="delete-checkbox" type="checkbox" id="box1" name="delete-booking">
-</li> */}
+function searchGuests() {
+  const inputSearchGuests = document.getElementById('searchGuests'); 
+  manager.searchUsers(inputSearchGuests.value);
+  const selectedUser = manager.selectedUser;
+  if(selectedUser === ''){
+    selectedUserErrorMsg.innerText = 'Guest record not found'
+} else {
+  hide(selectedUserErrorMsg); 
+  selectedUser.updateBookingHistory(hotel.bookings);
+  const userTotalSpent = selectedUser.calcTotalSpent(hotel.rooms);
+  displaySelectedUserHistory(manager.selectedUser.bookings, userTotalSpent); 
+}
+}
 
-
-
+function displaySelectedUserHistory(userBookings, userSpent) {
+  const selectedUserHistory = document.getElementById('selectedUserList');
+  const totalSpentSelectedGuest = document.getElementById('selectedGuestTotalSpent');
+  totalSpentSelectedGuest.innerText = userSpent;
+  selectedUserHistory.innerHTML = '';
+  userBookings.forEach(booking => {
+    const bookedRoom = hotel.returnRoomInfo(booking.roomNumber);
+    selectedUserHistory.innerHTML += ` <li class="selected-user-room-item">
+    <p>${booking.date}</p>
+    <p>${bookedRoom.roomType}</p>
+    <p>${bookedRoom.number}</p>
+    <input class="selected-user-checkbox" aria-label="delete-checkbox" type="checkbox" id="box${bookedRoom.number}" name="delete-booking">
+    </li> `
+  }); 
+}
 
 function userLogin(userData, bookingData) {
   hide(loginPage);
@@ -205,6 +225,8 @@ function userLogin(userData, bookingData) {
 }
 
 function displayUserInfo() {
+  const totalStays = document.getElementById('numberStays');
+  const totalSpent = document.getElementById('totalSpent');
   userName.innerText = `Welcome, ${currentUser.name}`; 
   totalStays.innerText = currentUser.calcNumberStays();
   totalSpent.innerText = `$${currentUser.calcTotalSpent(hotel.rooms)}`
@@ -242,9 +264,9 @@ function findPicture(room) {
   } 
 }
 
-function displayAvailableRooms() {
+function displayAvailableRooms(roomList) {
   availableRoomsList.innerHTML = '';
-  hotel.availableRooms.forEach(room => {
+  roomList.forEach(room => {
   const roomPicture = findPicture(room); 
   availableRoomsList.innerHTML += ` <li class="dashboard-room-item">
   <article class="dashboard-room">
@@ -264,36 +286,13 @@ function displayAvailableRooms() {
   </li>`
   });
 }
-//dry this up by using a display rooms and have a parameter of rooms to iterate
-function displayFilteredRooms(filteredRooms) {
-  availableRoomsList.innerHTML = '';
-  filteredRooms.forEach(room => {
-  const roomPicture = findPicture(room); 
-  availableRoomsList.innerHTML += ` <li class="dashboard-room-item">
-  <article class="dashboard-room">
-    ${roomPicture}
-    <div class="room-info">
-      <p class="room-description">room: ${room.roomType}</p>
-      <p class="room-description">${room.bidet ? 'bidet' : ''}</p>
-      <p class="room-description">bedsize: ${room.bedSize} King</p>
-      <p class="room-description">number of beds: ${room.numBeds}</p>
-      <p class="room-description">nightly rate: $${room.costPerNight}</p>
-    </div>
-  </article>
-  <div class="book-container" id="room${room.number}">
-    <button class="btn book-btn">Book Now</button>
-    <p class="bookingMsg"></p>
-  </div>
-  </li>`
-  });
-}
 
 function filterRoomsByDate(event) {
   let date;
   if(event.target.id === 'searchRooms'){
     date = calendar.value.replaceAll("-", "/")
     userSearchDisplay(date);
-} else if(event.target.id === 'managerSearchBtn') {
+} else if(event.target.id === 'managerSearchRooms') {
     date = calendarManager.value.replaceAll("-", "/")
     managerSearchDisplay(date)
 }
@@ -303,9 +302,9 @@ function userSearchDisplay(date) {
   hotel.checkAvailability(date)
   if(hotel.availableRooms.length) { 
     hide(apology); 
-    displayAvailableRooms(); 
+    displayAvailableRooms(hotel.availableRooms); 
 } else {
-    displayAvailableRooms()
+    displayAvailableRooms(hotel.availableRooms);
     show(apology);
 }  
 }
@@ -335,22 +334,60 @@ function checkFilteredRooms(roomType)  {
   const filteredRooms = hotel.filterRooms(roomType);
   if(filteredRooms.length) {
     hide(apology); 
-    displayFilteredRooms(filteredRooms);
+    displayAvailableRooms(filteredRooms);
 } else {
-    displayFilteredRooms(filteredRooms); 
+    displayAvailableRooms(filteredRooms); 
     show(apology); 
 }
 }
 
 function findBookingInfo(event) { 
-  let roomNumber; 
+  let roomNumber, room;
   const clickedButton = event.target
   if(event.target.classList.contains('book-btn')) {
-      roomNumber = Number(event.target.parentNode.id.replace("room", ''))
-  }
-    const room = hotel.returnRoomInfo(roomNumber);
-    bookRoom(room, clickedButton); 
+    roomNumber = Number(event.target.parentNode.id.replace("room", ''))
+    room = hotel.returnRoomInfo(roomNumber);
+    bookRoom(room, clickedButton);
+} else if(event.target.classList.contains('book-guest-btn')) {
+    roomNumber = Number(event.target.id.replace("bookGuest", ''))
+    room = hotel.returnRoomInfo(roomNumber);
+    managerBookRoom(room, clickedButton);
 }
+}
+
+function managerBookRoom(roomInfo, button) {
+  fetch(`http://localhost:3001/api/v1/bookings`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({'userID': manager.selectedUser.id, 'date': calendarManager.value.replaceAll('-', '/'), 'roomNumber': roomInfo.number})
+  })
+    .then(response => managerCheckForError(response))
+    .then(booking => {  
+      button.disabled = true;
+      hotel.addNewBooking(booking.newBooking);
+      const userTotalSpent = manager.selectedUser.calcTotalSpent(hotel.rooms);
+      manager.selectedUser.updateBookingHistory(hotel.bookings); 
+      displaySelectedUserHistory(manager.selectedUser.bookings, userTotalSpent);
+    })
+    .catch(err => console.log(err.message));
+}
+
+
+function managerCheckForError (response) { 
+  if (!response.ok) { 
+    managerBookingMsg.innerText = "Something went wrong on our end, please try back later"
+  } else {
+    managerBookingMsg.innerText = "Booking confirmed";
+    return response.json(); 
+  }
+}
+
+function managerServerMessage() {
+  managerBookingMsg.innerText = "Something went wrong on our end, please try back later"
+}
+
 
 function bookRoom(roomInfo, button) { 
   fetch(`http://localhost:3001/api/v1/bookings`, {
