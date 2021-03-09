@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="hidden" id="pageErrorMsg">Something went wrong on our end, please refresh and try again</div>
-    <section class="login-container" id="loginPage">
+    <section class="login-container hidden" id="loginPage">
       <section class="login-box">
         <h1 class="welcome-title">Welcome to the Overlook<h1>
         <h2 class="login-title">Please Login</h2>
@@ -22,68 +22,94 @@
         </form>
       </section>
     </section>
-    <section class="container hidden" id="dashboard">
+    <section class="container" id="dashboard">
       <header class="main-title" role="banner">
         <h1>The Overlook</h1>
       </header>
       <div class="purple-accent"></div>
       <main id="mainPage">
-        <section class="search" role ="search">
-          <h1 class="search-welcome-msg" id="userName">Welcome, Elizabeth Hahn</h1>
-          <div class="search-container">
-            <label for="checkin" id="testDate">check in
-            <input aria-expanded="false" type="date" id="checkin" name="book-date"
-              value="2021-03-11"
-              min="2020-01-01" max="2021-12-31" class="date-selector" id="dateSelector">
-            </label>
-            <button class="btn search-btn" id="searchRooms">Search Rooms</button>
-          </div>
-        </section>
-        <section class="dashboard">
-          <aside class="dashboard-history">
-            <h2>Your History</h2>
-            <ul class="dashboard-summary">
-              <li class="dashboard-summary-item">
-                <p class="item-title">Number of stays</p>
-                <p id="numberStays"></p>
-              </li>
-              <li class="dashboard-summary-item">
-                <p class="item-title">Total Spent</p>
-                <p id="totalSpent"></p>
-              </li>
-            </ul>
-            <div class="dashboard-stays-title-container">
-              <p class="item-title">Stays</p>
-              <p class="item-title">Room</p>
+        <section class="user-dashboard-container hidden">
+          <section class="search" role ="search">
+            <h1 class="search-welcome-msg" id="userName">Welcome, Elizabeth Hahn</h1>
+            <div class="search-container">
+              <label for="checkin" id="testDate">check in
+              <input aria-expanded="false" type="date" id="checkin" name="book-date"
+                value="2021-03-11"
+                min="2020-01-01" max="2021-12-31" class="date-selector" id="dateSelector">
+              </label>
+              <button class="btn search-btn" id="searchRooms">Search Rooms</button>
             </div>
-            <ul class="dashboard-stays" id="userHistory">
-            </ul>
-          </aside>
-        <section class="dashboard-rooms">
-          <h2>Available Rooms</h2>
-          <fieldset class="dashboard-room-filters" id="roomTypes">
-            <legend>Choose a room type</legend>
-            <label class="item-title" for="suite">Suite
-            <input class="room-type" type="radio" id="suite" name="room-type" value="suite">
-            </label>
-            <label class="item-title" for="juniorSuite">Junior Suite
-            <input class="room-type" type="radio" id="juniorSuite" name="room-type" value="juniorSuite">
-            </label>
-            <label class="item-title" for="residentialSuite">Residential Suite
-            <input class="room-type" type="radio" id="residentialSuite" name="room-type" value="residentialSuite">
-            </label>
-            <label class="item-title" for="single">Single
-            <input class= "room-type" type="radio" id="single" name="room-type" value="single">
-            </label>
-          </fieldset>
-        <section class="dashboard-rooms-container">
-            <p class="dashboard-msg hidden" id="dashboardMsg">We're sorry, there are no rooms available, please adjust your search and try again</p>
-            <ul class="dashboard-rooms-list" id="roomList">   
-            </ul>
+          </section>
+          <section class="dashboard">
+            <aside class="dashboard-history">
+              <h2>Your History</h2>
+              <ul class="dashboard-summary">
+                <li class="dashboard-summary-item">
+                  <p class="item-title">Number of stays</p>
+                  <p id="numberStays"></p>
+                </li>
+                <li class="dashboard-summary-item">
+                  <p class="item-title">Total Spent</p>
+                  <p id="totalSpent"></p>
+                </li>
+              </ul>
+              <div class="dashboard-stays-title-container">
+                <p class="item-title">Stays</p>
+                <p class="item-title">Room</p>
+              </div>
+              <ul class="dashboard-stays" id="userHistory">
+              </ul>
+            </aside>
+           <section class="dashboard-rooms">
+              <h2>Available Rooms</h2>
+              <fieldset class="dashboard-room-filters" id="roomTypes">
+                <legend>Choose a room type</legend>
+                <label class="item-title" for="suite">Suite
+                <input class="room-type" type="radio" id="suite" name="room-type" value="suite">
+                </label>
+                <label class="item-title" for="juniorSuite">Junior Suite
+                <input class="room-type" type="radio" id="juniorSuite" name="room-type" value="juniorSuite">
+                </label>
+                <label class="item-title" for="residentialSuite">Residential Suite
+                <input class="room-type" type="radio" id="residentialSuite" name="room-type" value="residentialSuite">
+                </label>
+                <label class="item-title" for="single">Single
+                <input class= "room-type" type="radio" id="single" name="room-type" value="single">
+                </label>
+              </fieldset>
+            <section class="dashboard-rooms-container">
+              <p class="dashboard-msg hidden" id="dashboardMsg">We're sorry, there are no rooms available, please adjust your search and try again</p>
+              <ul class="dashboard-rooms-list" id="roomList">   
+              </ul>
+            </section>
           </section>
         </section>
-       </section>
-      </main>
-    </section>
+      </section>
+      <section class="manager-dashboard-container">
+        <article class="snapshot-container">
+          <h1 class="snapshot-title">Today's SnapShot</h1>
+          <ul class="snapshot-list">
+            <li class="snapshot-item">
+              <p>total rooms available:</p>
+              <p class="snapshot-total">20</p>
+            </li>
+            <li class="snapshot-item">
+              <p >total Revenue:</p>
+              <p class="snapshot-total">$1004.56</p>
+            </li>
+            <li class="snapshot-item">
+              <p>percent occupied:</p>
+              <p class="snapshot-total">50%</p>
+            </li>
+          </ul>
+        </article>
+        <section class="manager-search-container">
+          <label>
+            <input type="text">
+          </label>
+        </section>
+      </section>
+    </main>
+  </section>
   </body>
 </html>

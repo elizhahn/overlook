@@ -84,7 +84,7 @@ main {
   border-radius: 5px; 
 }
 
-// ----------------History box-----------------------
+// ----------------User History box-----------------------
 
 .dashboard {
   @include flexStyle(flex, row); 
@@ -126,7 +126,7 @@ main {
   @extend.dashboard-stays-title-container;
 }
 
-// ---------------Rooms Box--------------------
+// ---------------User Rooms Box--------------------
 
 .dashboard-room-filters {
   @include flexStyle(flex, row);  
@@ -166,6 +166,29 @@ main {
 
 .book-container {
   width: 25%; 
+}
+
+// ----------------Manager-snapshot-box---------------
+
+.snapshot-container {
+  box-shadow: $card;
+  @include flexStyle(flex, row);
+  align-items: center; 
+}
+
+.snapshot-title {
+  width: 40%;
+  text-align: center;   
+}
+
+.snapshot-list {
+  padding: 0px; 
+  width: 60%; 
+}
+
+.snapshot-item {
+  @include flexStyle(flex, row); 
+  justify-content: space-around; 
 }
 
 // ------------------tablet view-----------------------
