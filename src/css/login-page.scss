@@ -4,6 +4,7 @@
   @include flexStyle(flex, row);
   justify-content: center;
   align-items: center; 
+  height: 100%;
   background-color: $purple;
 }
 
