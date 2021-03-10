@@ -1,105 +1,105 @@
-# Webpack Starter Kit
+  
+ [![LinkedIn](https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555)](https://www.linkedin.com/in/elizabeth-s-hahn/) [!  [GitHub](https://img.shields.io/badge/GitHub-black.svg?&style=flat-square&logo=github&logoColor=white)](https://github.com/elizhahn) - Elizabeth Hahn
 
-## Clone This Repo
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+## Table of Contents
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+- [About the Project](#about-the-project)
+  - [Built With](#built-with)
+- [Set-up Instructions](#set-up-instructions)
+- [Learning Goals](#learning-goals)
+- [Challenges](#challenges)
+- [Wins](#wins)
+- [Functionality](#functionality)
+- [Future Iterations](#future-iterations)
+- [Contributors](#contributors)
+- [Contact](#contact)
 
-Now try to commit something and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+## About The Project
 
-## Setup
+This project entailed building a hotel management tool for hotel customers and staff to manage room bookings and calculate customer bills. A large focus was placed upon using Object Oriented Programming to drive design and functionality and utilizing asynchronous javascript with an API. In addtion, a robust test suite was created to thoroughly tests all functionality of this client-side application.
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo. 
+The application was also tested for cross-browser compatiability and responsive design for all screen sizes. Sass was utilized to DRY up the CSS file and use dynamic styling. The project also focused upon accessibility and was tested for 100% accessible features. 
 
-Then install the library dependencies. Run:
+- [Project Brief and Rubric](https://frontend.turing.io/projects/overlook.html)
+  
 
-```bash
-npm install
-```
+#### Built With:
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with some `h1` text, Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+- [![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)](https://www.javascript.com/) with `ES6` implementations
 
-## Where to Add Your Code
+- ![HTML5](https://img.shields.io/badge/-HTML5-black?style=flat-square&logo=html5&logoColor=white)
 
-### JavaScript
+- ![CSS3](https://img.shields.io/badge/-CSS3-black?style=flat-square&logo=css3)
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+  
 
-**Create all of your feature code files in the `src` directory.**
+## Set-up Instructions
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
+1. Clone this [Github repository](https://github.com/elizhahn/overlook) to your local machine using the `git clone` command in your Terminal.
+2. Clone this [Github repository](https://github.com/turingschool-examples/overlook-api) to your local machine using the `git clone` command.
+3. Move into each directory and run `npm install` and then `npm start` in two different terminals
+4. visit http://localhost:8080/ to see the application live
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+## Learning Goals
+- OOP design
+- applying Sass to DRY up the CSS
+- Utilizing fetch calls and the API to strengthen understanding of asynchronous javascript
+- Solidify the code review process
+- More practice and application of TDD and it's importance
 
-### HTML
 
-Add the HTML you need in the `index.html` file in the `./src` directory. There is some boilerplate HTML that exists from the start that you can modify.
+## Challenges
 
-### CSS (SCSS/SASS)
+1. Planning: intentionally planning an overall strategy before writing code. This included class structures and methods, and their respective tests, creating a wireframe for all the layouts, and implementing a detailed `gitHub` project board.
+2. Utilizing an API and managing data flow with fetch calls. 
+3. Error handling for API calls and UX
 
-This project is setup to use SCSS/SASS files by default instead of your regular CSS files. Add your SCSS files in the `src/css` directory. There is a `base.scss` file already there, but you can change this file and add multiple SCSS files in this directory.
 
-This might sound weird, but you need to `import` your SCSS files in the JavaScript entry file (`index.js`) for the styles to be applied to your HTML. The example `base.scss` file has already been imported in the JavaScript entry file as an example.
 
-### Images
+## Wins
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`index.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
+1. The minimum viable product (MVP) was achieved and most of the manager dashboard is completed. 
+2. The testing suite is specific with happy/sad path outcomes 
+3. Creating a user interface that is easy to use and displays information on multiple screens.
 
-## How to View Your Code in Action
 
-In the terminal, run:
+## Functionality
 
-```bash
-npm start
-```
+#### Login View
+![login view](https://media.giphy.com/media/CHBtEAKPcZ3BOqqP00/giphy.gif)
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
+#### User Dashboard
+![user dashboard](https://media.giphy.com/media/OYlb1MQCZCjbBt7oGr/giphy.gif)
 
-```bash
-Project is running at http://localhost:8080/
-```
+#### Manager Dashboard
+![manager dashboard](https://media.giphy.com/media/fzSDTWpbEh8iJcGYSX/giphy.gif)
 
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
 
----
 
-## Test Files Organization
+## Future Iterations
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
+1. Allow a manager to delete a booking for a user
+2. Create a responsive design for the manager dashboard and additional styling for UX
+3. Allow user's to click on a room picture and see more details about the room
 
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
 
-## Running Your Tests
+## Contributers
 
-Run your test suite using the command:
+* [Elizabeth Hahn](https://github.com/elizhahn) - Application Co-creator
+* [David Whitaker](https://github.com/damwhit) - Project Manager
 
-```bash
-npm test
-```
+## Contact
 
-The test results will output to the terminal.
+[<img src="https://img.shields.io/badge/LinkedIn-elizabeth--hahn-informational?style=for-the-badge&labelColor=black&logo=linkedin&logoColor=0077b5&&color=0077b5"/>][linkedin2]
+[<img src="https://img.shields.io/badge/Gmail-elizshahn@gmail.com-informational?style=for-the-badge&labelColor=black&logoColor=d14836&logo=microsoft&color=d14836"/>][gmail2]
+[<img src="https://img.shields.io/badge/Github-elizhahn-informational?style=for-the-badge&labelColor=black&logo=github&color=7d88e6"/>][github2]
 
----
 
-## Linting Your Code
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
+<!-- Personal Definitions  -->
 
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory. 
+[linkedin2]: https://www.linkedin.com/in/elizabeth-s-hahn/
+[Gmail2]: mailto:elizshahn@gmail.com
+[github2]: https://github.com/elizhahn
 
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
