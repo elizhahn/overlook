@@ -31,7 +31,11 @@ class Hotel {
     const room = this.rooms.find(room => {
       return roomNumber === room.number; 
     });
-    return room; 
+    if(!room) {
+      return {};
+  } else {
+      return room; 
+  }  
   }
 
   addNewBooking(booking) {

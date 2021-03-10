@@ -6,6 +6,8 @@ import './images/venice-hotel-tqwvsyL2Kd0-unsplash.jpg'
 import User from './User';
 import Hotel from './Hotel';
 import Manager from './Manager';
+import Booking from './Booking.js';
+import Room from './Room.js';
 
 
 const userHistory = document.getElementById('userHistory');
@@ -194,7 +196,14 @@ function displaySuccessMsg (roomInfo) {
 function initialize(userData, roomData, bookingData) {
   const date = new Date().toISOString().slice(0, 10).replaceAll('-', '/');
   updateCalendar(date); 
-  hotel = new Hotel(date, roomData, bookingData); 
+  const roomInstances = roomData.map(room => {
+    return room = new Room(room); 
+  });
+  const bookingInstances = bookingData.map(booking => {
+    return booking = new Booking(booking); 
+  });
+
+  hotel = new Hotel(date, roomInstances, bookingInstances); 
   manager = new Manager(userData);
   hotel.checkAvailability(hotel.date); 
   displayAvailableRooms(hotel.availableRooms); 
