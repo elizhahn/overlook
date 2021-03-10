@@ -234,12 +234,16 @@ function validateManager(event) {
   event.preventDefault();
   const managerUserName = inputUserName.value.match(/manager/g)
   if (managerUserName === null) {
+    show(userNameErrorMsg);
+    hide(passwordErrorMsg);
     userNameErrorMsg.innerText = "invalid username, please try again"
   } else if (inputPassword.value !== "overlook2021") {
     hide(userNameErrorMsg);
+    show(passwordErrorMsg);
     passwordErrorMsg.innerText = "invalid password, please try again" 
   } else {
     hide(passwordErrorMsg)
+    hide(userNameErrorMsg);
     managerLogin();
   }
 }
