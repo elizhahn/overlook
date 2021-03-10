@@ -215,12 +215,16 @@ function validateUser(event) {
   const userName = inputUserName.value.match(/^[A-Z][a-z]{7}\d{1,2}$/i);
   const preFix = inputUserName.value.match(/customer/g)
   if (userName === null || preFix === null) {
+    show(userNameErrorMsg);
+    hide(passwordErrorMsg);
     userNameErrorMsg.innerText = "invalid username, please try again"
   } else if (inputPassword.value !== "overlook2021") {
     hide(userNameErrorMsg);
+    show(passwordErrorMsg);
     passwordErrorMsg.innerText = "invalid password, please try again" 
   } else { 
     hide(passwordErrorMsg);
+    hide(userNameErrorMsg); 
     const userId = inputUserName.value.match(/\d+/g)
     findUser(userId)
   }
