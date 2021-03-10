@@ -33,7 +33,7 @@ describe("Manager", function () {
       "name": "Kelvin Schiller"
     }]);
   });
-  it('should search user user\'s and return the user', function () {
+  it('should search user\'s and return the user', function () {
     manager1.searchUsers('Rocio');
     expect(manager1.selectedUser).to.be.instanceof(User);
     expect(manager1.selectedUser).to.deep.equal({
@@ -66,15 +66,5 @@ describe("Manager", function () {
       "roomNumber": 1,
       "roomServiceCharges": []
     }]);
-  });
-  it('should create a new booking', function () {
-    manager1.searchUsers('Rocio');
-    const newBooking = manager1.createNewBooking(4, '2020/02/06');
-    expect(newBooking).to.deep.equal(
-      {
-        userID: 2,
-        date: '2020/02/06',
-        roomNumber: 4,
-      });
   });
 });

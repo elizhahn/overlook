@@ -6,11 +6,12 @@ class Manager  {
     this.users = userData; 
   }
 
-  searchUsers(name) {
+  searchUsers(name) { 
     const selectedUser = this.users.find(user => {
       const firstandLastName = user.name.toLowerCase().split(' ');
-      return firstandLastName.includes(name);
+      return firstandLastName.includes(name.toLowerCase());
     });
+    
     if (!selectedUser) {
       this.selectedUser = '';
     } else {
@@ -23,14 +24,6 @@ class Manager  {
       return booking.id === bookingId;
     });
     this.selectedUser.bookings.splice(bookingIndex, 1); 
-  }
-  
-  createNewBooking(roomNum, date) {
-    return {
-      userID: this.selectedUser.id,
-      date,
-      roomNumber: roomNum
-    }
   }
 }
 

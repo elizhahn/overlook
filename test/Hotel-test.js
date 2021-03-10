@@ -1,7 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 import Hotel from '../src/Hotel.js'
-import Room from '../src/Room.js';
+import Room from '../src/Room.js'
 import Booking from '../src/Booking.js'
 import bookingData from '../test-data/Booking-test-data.js';
 import roomData from '../test-data/Room-test-data.js';
@@ -117,8 +117,12 @@ describe('Hotel', function () {
       "bedSize": "queen",
       "numBeds": 1,
       "costPerNight": 358.4
-    })
-  })
+    });
+  });
+  it('should should return an empty object if no room is found', function () {
+    const roomInfo = hotel.returnRoomInfo(7); 
+    expect(roomInfo).to.deep.equal({});
+  });
   it('should add a new booking to the booking list', function () {
     const newBooking = {
       "id": "2fiknu4i7k55h7ygd",
