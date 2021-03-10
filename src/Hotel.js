@@ -23,8 +23,8 @@ class Hotel {
     });
     const availableRooms = this.rooms.filter(room => {
       return !roomNumbers.includes(room.number)
-      });
-      return this.availableRooms = availableRooms; 
+    });
+    return this.availableRooms = availableRooms; 
   }
 
   returnRoomInfo(roomNumber) {
@@ -38,12 +38,26 @@ class Hotel {
     this.bookings.unshift(booking); 
   }
 
-  //Method to calculate total revenue for today's date
+  calcTodayRevenue(date) {
+    const todayBookings = this.bookings.filter(booking => {
+      return booking.date === date;
+    });
+    const totalRevenue = todayBookings.reduce((total, booking) => {
+      this.rooms.forEach(room => {
+        if (booking.roomNumber === room.number) {
+          total += room.costPerNight;
+        }
+      });
+      return total
+    }, 0);
+    return totalRevenue; 
+  }
 
-  //Method to calculate total percentage of rooms occupied
+  calcPercentOccupied() {
+    const roomsBooked = this.rooms.length - this.availableRooms.length
+    return Math.round(roomsBooked / this.rooms.length * 100)
+  }
 
-  //Method to search users and list
-  
 }
 
 export default Hotel; 

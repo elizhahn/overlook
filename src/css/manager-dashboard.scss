@@ -1,0 +1,98 @@
+// ----------------Manager-snapshot-box---------------
+
+.snapshot-container {
+  box-shadow: $card;
+  @include flexStyle(flex, row);
+  align-items: center; 
+}
+
+.snapshot-list {
+  padding: 0px; 
+  width: 60%; 
+}
+
+.snapshot-item {
+  @include flexStyle(flex, row); 
+  justify-content: space-around; 
+}
+
+.manager-search-container {
+  @include flexStyle(flex, row);
+  justify-content: center;
+  align-items: center;   
+}
+
+.search-item {
+  padding: 20px;
+  width: 25%;
+}
+
+.search-input {
+   width: 85%;
+   
+}
+
+// ---------------manager selected user box------------------
+
+.manager-dashboard {
+  @include flexStyle(flex, row);
+  justify-content: space-around;  
+}
+
+.manager-selected-user-container {
+  @extend.manager-dashboard; 
+  @include setBorder(border-bottom);
+  align-items: center;  
+}
+
+.manager-user-view {
+  width: 35%;
+  box-shadow: $card; 
+}
+
+.selected-user-room-list {
+  list-style-type: none;
+  padding: 0px;
+  margin: 15px;
+}
+
+.selected-user-room-item {
+  @extend.manager-dashboard;
+  @include setBorder(border-bottom); 
+}
+
+.selected-user-checkbox {
+  align-self: center; 
+}
+
+
+
+// ------------manager booking box--------------------------
+
+.manager-booking-view { 
+  box-shadow: $card;
+  width: 60%; 
+}
+
+.manager-checkin-container {
+  @extend.manager-dashboard;
+  align-items: center;
+  @include setBorder(border-bottom);
+  padding: 10px;    
+}
+
+.manager-search-rooms {
+  @extend.manager-dashboard;
+  align-items: center;  
+}
+
+.manager-rooms-list {
+  padding: 0px; 
+}
+
+.manager-room-item {
+  @extend.manager-dashboard;
+  @include setBorder(border-bottom);
+  align-items: center;  
+  padding: 10px; 
+}

@@ -8,7 +8,7 @@ import userData from '../test-data/User-test-data.js'
 describe("Manager", function () {
   let manager1;
   beforeEach(function () {
-   manager1 = new Manager(userData); 
+    manager1 = new Manager(userData); 
   });
   it('should be a function', function () {
     expect(Manager).to.be.a('function'); 

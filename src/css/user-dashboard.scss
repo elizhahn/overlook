@@ -1,0 +1,109 @@
+// -------------header and search area---------------
+
+.purple-accent {
+  background-color: $dark-purple;
+  height: 30px; 
+}
+
+.search {
+  @include flexStyle(flex, row); 
+  padding: 30px;   
+}
+
+.search-container {
+  @include flexStyle(flex, row); 
+  align-items: center;
+  justify-content: space-around; 
+  width: 50%; 
+}
+
+.btn {
+  background-color: $light-purple;
+  border: none; 
+  padding: 10px;
+  border-radius: 5px; 
+}
+
+// ----------------User History box-----------------------
+
+.dashboard {
+  @include flexStyle(flex, row); 
+}
+
+.dashboard-history {
+  box-shadow: $card;
+  margin: 10px;
+  padding: 20px; 
+  width: 40%;   
+}
+
+.dashboard-rooms {
+  @extend.dashboard-history; 
+  width: 90%; 
+}
+
+.dashboard-summary {
+  padding: 0px;
+  @include setBorder(border-bottom);
+}
+
+.dashboard-stays {
+  @extend.dashboard-summary; 
+}
+
+.dashboard-stays-title-container {
+  @include flexStyle(flex, row); 
+  justify-content: space-between;
+}
+
+.dashboard-summary-item {
+  @extend.dashboard-stays-title-container;
+}
+
+.dashboard-stays-item {
+  padding: 5px 0px; 
+  @include setBorder(border-top);
+  @extend.dashboard-stays-title-container;
+}
+
+// ---------------User Rooms Box--------------------
+
+.dashboard-room-filters {
+  @include flexStyle(flex, row);  
+  justify-content: space-around;
+  padding: 20px 0px; 
+  @include setBorder(border-bottom); 
+}
+
+.dashboard-rooms-list {
+  list-style-type: none;
+  padding: 0px; 
+  margin: 0px;  
+}
+
+.dashboard-room-item {
+ @include flexStyle(flex, row); 
+ @include setBorder(border-bottom);
+ padding-top: 20px;
+}
+
+.dashboard-room {
+  @include flexStyle(flex, row); 
+  align-items: flex-start; 
+  flex: 1;
+  margin-right: 10px;  
+}
+
+.room-img { 
+   padding: 20px 0px; 
+   height: 160px; 
+   max-width: 215px; 
+}
+
+.room-info {
+  margin-left: 10px; 
+}
+
+.book-container {
+  width: 25%; 
+}

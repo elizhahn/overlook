@@ -11,12 +11,12 @@ describe('Hotel', function () {
   let hotel, roomInstances, bookingInstances; 
   beforeEach(function() {
     roomInstances = roomData.map(room => {
-     return room = new Room(room); 
-   });
+      return room = new Room(room); 
+    });
     bookingInstances = bookingData.map(booking => {
-     return booking = new Booking(booking); 
-   });
-   hotel = new Hotel('2021/04/22', roomInstances, bookingInstances); 
+      return booking = new Booking(booking); 
+    });
+    hotel = new Hotel('2021/04/22', roomInstances, bookingInstances); 
   }); 
   it('should be a function', function () {
     expect(Hotel).to.be.a('function');
@@ -109,7 +109,7 @@ describe('Hotel', function () {
     expect(filteredRooms).to.deep.equal([]);
   });
   it('should return room information', function () {
-    const roomInfo= hotel.returnRoomInfo(1); 
+    const roomInfo = hotel.returnRoomInfo(1); 
     expect(roomInfo).to.deep.equal({
       "number": 1,
       "roomType": "residential suite",
@@ -137,4 +137,17 @@ describe('Hotel', function () {
       "roomServiceCharges": []
     });
   });
+  it('should return daily revenue', function () {
+    const todayRevenue = hotel.calcTodayRevenue('2020/02/05')
+    expect(todayRevenue).to.equal(2493.55); 
+  });
+  it('should return daily percentage occupied', function () {
+    hotel.checkAvailability('2020/02/05')
+    const percent1 = hotel.calcPercentOccupied();
+    expect(percent1).to.equal(100);
+
+    hotel.checkAvailability('2020/02/06');
+    const percent2 = hotel.calcPercentOccupied();
+    expect(percent2).to.equal(0);
+  })
 });

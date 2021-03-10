@@ -1,0 +1,37 @@
+// ---------------login page-------------------------
+
+.login-container {
+  @include flexStyle(flex, row);
+  justify-content: center;
+  align-items: center; 
+  background-color: $purple;
+}
+
+.login-box {
+  background-color: #FFF;
+  box-shadow: $card; 
+  width: 35%;
+  border-radius: 5px;
+  padding: 20px; 
+}
+
+.login-form {
+  @include flexStyle(flex, column);
+  align-content: space-evenly; 
+
+}
+
+.input {
+  height: 30px;
+  margin: 30px 0px; 
+}
+
+.login-btn {
+  width: 50%; 
+  align-self: center; 
+  margin-bottom: 30px;
+
+  &:hover {
+    background-color: $purple; 
+  }
+}

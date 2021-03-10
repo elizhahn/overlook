@@ -1,8 +1,3 @@
-// @mixin removeListStyle() {
-//   list-style-type: none; 
-//   padding: 0px; 
-// }
-
 @mixin setBorder($borderRule) {
   #{$borderRule}: thin solid $light-purple
 }
@@ -11,3 +6,4 @@
   display: $display;
   flex-direction: $direction; 
 }
+

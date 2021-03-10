@@ -1,22 +1,22 @@
 import User from "./User";
 
 class Manager  {
-  constructor(userData){
+  constructor(userData) {
     this.selectedUser = '';
     this.users = userData; 
   }
 
   searchUsers(name) {
     const selectedUser = this.users.find(user => {
-      const firstandLastName = user.name.split(' ');
+      const firstandLastName = user.name.toLowerCase().split(' ');
       return firstandLastName.includes(name);
     });
-    if(!selectedUser) {
+    if (!selectedUser) {
       this.selectedUser = '';
-  } else {
+    } else {
       const user = new User(selectedUser);  
       this.selectedUser = user; 
-  }
+    }
   }
   deleteBooking(bookingId) {
     const bookingIndex = this.selectedUser.bookings.findIndex(booking => {
@@ -28,7 +28,7 @@ class Manager  {
   createNewBooking(roomNum, date) {
     return {
       userID: this.selectedUser.id,
-      date: date,
+      date,
       roomNumber: roomNum
     }
   }

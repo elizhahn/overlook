@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="hidden" id="pageErrorMsg">Something went wrong on our end, please refresh and try again</div>
-    <section class="login-container hidden" id="loginPage">
+    <section class="login-container" id="loginPage">
       <section class="login-box">
         <h1 class="title welcome-title">Welcome to the Overlook<h1>
         <h2 class="login-title">Please Login</h2>
@@ -18,19 +18,20 @@
           <input class="input" aria-label="password" type="password" name="password" placeholder="password" id="password" required>
           <p class="password-error-msg" id="passwordErrorMsg"></p>
           <input class="btn login-btn" type="submit" value="Login" id="loginBtn"/>
+          <input class="btn login-btn" type="submit" value="Manager Login" id="managerLoginBtn"/>
           <p id="serverMsg"></p>
         </form>
       </section>
     </section>
-    <section class="container" id="dashboard">
+    <section class="container hidden" id="dashboard">
       <header class="title main-title" role="banner">
         <h1>The Overlook</h1>
       </header>
       <div class="purple-accent"></div>
       <main id="mainPage">
-        <section class="user-dashboard-container hidden">
+        <section class="user-dashboard-container hidden" id="userDashboard">
           <section class="search" role ="search">
-            <h1 class="search-welcome-msg" id="userName">Welcome, Elizabeth Hahn</h1>
+            <h1 class="search-welcome-msg" id="userName">Welcome, Guest</h1>
             <div class="search-container">
               <label for="checkin" id="testDate">check in
               <input aria-expanded="false" type="date" id="checkin" name="book-date"
@@ -85,7 +86,7 @@
           </section>
         </section>
       </section>
-      <section class="manager-dashboard-container">
+      <section class="manager-dashboard-container hidden" id="managerDashboard">
         <article class="snapshot-container">
           <h1 class="snapshot-title">Today's SnapShot</h1>
           <ul class="snapshot-list">
@@ -94,7 +95,7 @@
               <p class="snapshot-total">20</p>
             </li>
             <li class="snapshot-item">
-              <p >total Revenue:</p>
+              <p>total Revenue:</p>
               <p class="snapshot-total">$1004.56</p>
             </li>
             <li class="snapshot-item">
@@ -105,57 +106,42 @@
         </article>
         <section class="manager-search-container">
           <label class="search-item" for="search">
-            <input class="input search-input" type="text" id="search" name="search-users" placeholder="search here">
+            <input class="input search-input" type="text" id="searchGuests" name="search-users" placeholder="search guests here">
           </label>
           <div class="search-item">
-            <button class=" btn manager-search-btn">Search Users</button>
+            <button class=" btn manager-search-btn" id="managerSearchGuests">Search Guests</button>
          </div>
         </section>
         <section class="manager-dashboard">
           <aside class="manager-user-view">
             <div class="manager-selected-user-container">
               <div class="selected-user-container">
-                <h1>Guest Name</h1>
-                <p>Total Spent: $4576.87</p>
+                <h1 id="selectedUser">Find Guest</h1>
+                <p>Total Spent: <span id="selectedGuestTotalSpent"></span></p>
               </div>
               <div>
                 <button class="btn delete-btn">Delete Booking</button>
               </div>
             </div>
-            <ul class="selected-user-room-list">
-              <li class="selected-user-room-item">
-                <p>3/11/2021</p>
-                <p>"suite"</p>
-                <p>room 3</p>
-                <input class="selected-user-checkbox" aria-label="delete-checkbox" type="checkbox" id="box1" name="delete-booking">
-              </li>
+            <p id="findGuestErrorMsg"></p>
+            <ul class="selected-user-room-list" id="selectedUserList">
             </ul>
           </aside>
           <section class="manager-booking-view">
             <div class="manager-checkin-container">
               <h1>Manager Portal</h1>
               <label for="manual-checkin">check in
-                <input aria-expanded="false" type="date" id="manualCheckin" name="book-date"
+                <input class="manager-date-selector" aria-expanded="false" type="date" name="book-date"
                   value="2021-03-11"
-                  min="2020-01-01" max="2021-12-31" class="manager-date-selector" id="manualDateSelector">
+                  min="2020-01-01" max="2021-12-31"  id="manualDateSelector">
               </label>
             </div>
-            <h2 class="title">Available Rooms</h2>
-            <p class="manager-error-msg"></p>
-            <ul class="manager-rooms-list">
-              <li class="manager-room-item">
-                <p>suite</p>
-                <p>room 4</p>
-                <p>$324.56</p>
-                <button class="btn">Book Guest</button>
-              </li>
-              <li class="manager-room-item">
-                <p>suite</p>
-                <p>room 4</p>
-                <p>$324.56</p>
-                <button class="btn">Book Guest</button>
-              </li>
-
+            <div class="manager-search-rooms">
+              <h2 class="title">Available Rooms</h2>
+              <button class="btn" id="managerSearchRooms">Search Rooms</button>
+            </div>
+            <p class="manager-error-msg" id="managerBookingMsg"></p>
+            <ul class="manager-rooms-list" id="managerRoomList">
             </ul>
           </section>
         </section>
