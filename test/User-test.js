@@ -8,17 +8,17 @@ describe('User', function() {
   let user1, user2, userData1, userData2;  
   beforeEach(function () {
 
-   userData1 = {
+    userData1 = {
       "id": 1,
       "name": "Elizabeth Hahn"
-      };
-   userData2 = {
+    };
+    userData2 = {
       "id": 2,
       "name": "Rocio Schuster"
-      };
+    };
    
-   user1 = new User(userData1);
-   user2 = new User(userData2); 
+    user1 = new User(userData1);
+    user2 = new User(userData2); 
     
   });
   it('should be a function', function () {
@@ -27,7 +27,7 @@ describe('User', function() {
   it('should be an instance of User', function () {
     expect(user1).to.be.instanceof(User); 
   });
-  it('should hold a user\'s name and id', function (){
+  it('should hold a user\'s name and id', function () {
     expect(user1.id).to.equal(1);
     expect(user1.name).to.equal("Elizabeth Hahn")
   })
@@ -57,34 +57,34 @@ describe('User', function() {
     user2.updateBookingHistory(bookingData); 
     expect(user2.bookings.length).to.equal(3); 
     expect(user2.bookings).to.deep.equal([
-    {
-      "id": "5fwrgu4i7k55hl6t6",
-      "userID": 2,
-      "date": "2020/02/05",
-      "roomNumber": 5,
-      "roomServiceCharges": []
-    },
-    {
-      "id": "5fwrgu4i7k55hl6t7",
-      "userID": 2,
-      "date": "2020/02/05",
-      "roomNumber": 6,
-      "roomServiceCharges": []
-    },
-    {
-      "id": "5fwrgu4i7k55hl6u4",
-      "userID": 2,
-      "date": "2020/01/23",
-      "roomNumber": 1,
-      "roomServiceCharges": []
-    }]);
+      {
+        "id": "5fwrgu4i7k55hl6t6",
+        "userID": 2,
+        "date": "2020/02/05",
+        "roomNumber": 5,
+        "roomServiceCharges": []
+      },
+      {
+        "id": "5fwrgu4i7k55hl6t7",
+        "userID": 2,
+        "date": "2020/02/05",
+        "roomNumber": 6,
+        "roomServiceCharges": []
+      },
+      {
+        "id": "5fwrgu4i7k55hl6u4",
+        "userID": 2,
+        "date": "2020/01/23",
+        "roomNumber": 1,
+        "roomServiceCharges": []
+      }]);
   });
   it('should calculate a user\'s total stays', function () {
     user1.updateBookingHistory(bookingData); 
     const totalStays = user1.calcNumberStays()
     expect(totalStays).to.equal(2);
   })
-  it('should calculate user\'s total amount spent',function () {
+  it('should calculate user\'s total amount spent', function () {
     user1.updateBookingHistory(bookingData); 
     const totalSpent = user1.calcTotalSpent(roomData);
     expect(totalSpent).to.equal(906.82); 

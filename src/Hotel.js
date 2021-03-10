@@ -23,8 +23,8 @@ class Hotel {
     });
     const availableRooms = this.rooms.filter(room => {
       return !roomNumbers.includes(room.number)
-      });
-      return this.availableRooms = availableRooms; 
+    });
+    return this.availableRooms = availableRooms; 
   }
 
   returnRoomInfo(roomNumber) {
@@ -44,7 +44,7 @@ class Hotel {
     });
     const totalRevenue = todayBookings.reduce((total, booking) => {
       this.rooms.forEach(room => {
-        if(booking.roomNumber === room.number) {
+        if (booking.roomNumber === room.number) {
           total += room.costPerNight;
         }
       });
@@ -55,7 +55,7 @@ class Hotel {
 
   calcPercentOccupied() {
     const roomsBooked = this.rooms.length - this.availableRooms.length
-    return Math.round(roomsBooked/this.rooms.length * 100)
+    return Math.round(roomsBooked / this.rooms.length * 100)
   }
 
 }

@@ -5,19 +5,19 @@ class User {
     this.bookings = []; 
   }
 
-   updateBookingHistory(bookingData) {
+  updateBookingHistory(bookingData) {
     const userBookings = bookingData.filter(booking => {
       return booking.userID === this.id;
     });
     
     userBookings.sort((bookingA, bookingB) => {
-      if(bookingA.date > bookingB.date) {
+      if (bookingA.date > bookingB.date) {
         return -1
-    } else if( bookingA.date < bookingB.date) {
+      } else if ( bookingA.date < bookingB.date) {
         return 1
-    } else {
+      } else {
         return 0
-    }
+      }
     });
     this.bookings = userBookings;
   }
@@ -29,7 +29,7 @@ class User {
   calcTotalSpent(roomData) {
     const customerSpending = this.bookings.reduce((totalSpent, booking) => {
       const bookedRoom = roomData.find(hotelRoom => {
-       return booking.roomNumber === hotelRoom.number;  
+        return booking.roomNumber === hotelRoom.number;  
       });
       totalSpent += bookedRoom.costPerNight;
       return totalSpent; 

@@ -11,12 +11,12 @@ describe('Hotel', function () {
   let hotel, roomInstances, bookingInstances; 
   beforeEach(function() {
     roomInstances = roomData.map(room => {
-     return room = new Room(room); 
-   });
+      return room = new Room(room); 
+    });
     bookingInstances = bookingData.map(booking => {
-     return booking = new Booking(booking); 
-   });
-   hotel = new Hotel('2021/04/22', roomInstances, bookingInstances); 
+      return booking = new Booking(booking); 
+    });
+    hotel = new Hotel('2021/04/22', roomInstances, bookingInstances); 
   }); 
   it('should be a function', function () {
     expect(Hotel).to.be.a('function');
@@ -109,7 +109,7 @@ describe('Hotel', function () {
     expect(filteredRooms).to.deep.equal([]);
   });
   it('should return room information', function () {
-    const roomInfo= hotel.returnRoomInfo(1); 
+    const roomInfo = hotel.returnRoomInfo(1); 
     expect(roomInfo).to.deep.equal({
       "number": 1,
       "roomType": "residential suite",
