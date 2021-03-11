@@ -35,7 +35,7 @@ The application was also tested for cross-browser compatiability and responsive 
 ## Set-up Instructions
 
 1. Clone this [Github repository](https://github.com/elizhahn/overlook) to your local machine using the `git clone` command in your Terminal.
-2. Clone this [Github repository](https://github.com/turingschool-examples/overlook-api) to your local machine using the `git clone` command.
+2. Clone this API [Github repository](https://github.com/turingschool-examples/overlook-api) to your local machine using the `git clone` command.
 3. Move into each directory and run `npm install` and then `npm start` in two different terminals
 4. visit http://localhost:8080/ to see the application live
 
@@ -72,6 +72,11 @@ The application was also tested for cross-browser compatiability and responsive 
 
 #### Manager Dashboard
 ![manager dashboard](https://media.giphy.com/media/fzSDTWpbEh8iJcGYSX/giphy.gif)
+
+#### Accessibility
+
+![lighthouse audit](src/screenshots/Screen Shot 2021-03-11 at 12.51.41 PM.png?raw=true "lighthouse audit")
+
 
 
 
