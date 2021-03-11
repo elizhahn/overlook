@@ -75,7 +75,7 @@ The application was also tested for cross-browser compatiability and responsive 
 
 #### Accessibility
 
-![lighthouse audit](https://raw.github.com/elizhahn/overlook/screenshots/src/screenshots/Screen Shot 2021-03-11 at 12.51.41 PM.png?raw=true "lighthouse audit")
+![lighthouse audit](https://raw.githubusercontent.com/elizhahn/overlook/screenshots/src/screenshots/Screen%20Shot%202021-03-11%20at%2012.51.41%20PM.png)
 
 
 
