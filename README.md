@@ -39,28 +39,6 @@ The application was also tested for cross-browser compatiability and responsive 
 3. Move into each directory and run `npm install` and then `npm start` in two different terminals
 4. visit http://localhost:8080/ to see the application live
 
-## Learning Goals
-- OOP design
-- applying Sass to DRY up the CSS
-- Utilizing fetch calls and the API to strengthen understanding of asynchronous javascript
-- Solidify the code review process
-- More practice and application of TDD and it's importance
-
-
-## Challenges
-
-1. Planning: intentionally planning an overall strategy before writing code. This included class structures and methods, and their respective tests, creating a wireframe for all the layouts, and implementing a detailed `gitHub` project board.
-2. Utilizing an API and managing data flow with fetch calls. 
-3. Error handling for API calls and UX
-
-
-
-## Wins
-
-1. The minimum viable product (MVP) was achieved and most of the manager dashboard is completed. 
-2. The testing suite is specific with happy/sad path outcomes 
-3. Creating a user interface that is easy to use and displays information on multiple screens.
-
 
 ## Functionality
 
